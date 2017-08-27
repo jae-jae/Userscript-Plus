@@ -8,11 +8,12 @@
 // @author       Jaeger <JaegerCode@gmail.com>
 // @icon         https://greasyfork.org/assets/blacklogo16-bc64b9f7afdc9be4cbfa58bdd5fc2e5c098ad4bca3ad513a27b15602083fd5bc.png
 // @include        *
+// @exclude      http://www.dev/Show-Site-All-UserJS/ui.html
 // @require      https://cdn.bootcss.com/babel-core/5.6.15/browser-polyfill.min.js
 // @require      https://cdn.bootcss.com/babel-core/5.6.15/browser.min.js
 // @require     https://raw.githubusercontent.com/jae-jae/l.js/master/userjs/l.userjs.min.js
 // @require     https://gist.githubusercontent.com/jae-jae/35a1833079d26e6c9d9c6d5bed982353/raw/userjs-base.js
-// @resource     ui    https://raw.githubusercontent.com/jae-jae/Show-Site-All-UserJS/master/ui.html
+// @resource     ui    http://www.dev/Show-Site-All-UserJS/ui.html?xx3dd353
 // @grant        GM_xmlhttpRequest
 // @grant        GM_getResourceText
 // @noframes

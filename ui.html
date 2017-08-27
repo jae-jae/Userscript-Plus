@@ -4,17 +4,42 @@
 <head>
     <meta charset="utf-8">
     <title>xx</title>
+    <link href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/iview/dist/styles/iview.css">
     <script src="https://vuejs.org/js/vue.js"></script>
     <script src="https://unpkg.com/iview/dist/iview.js"></script>
     <script src="https://cdn.bootcss.com/timeago.js/3.0.2/timeago.min.js"></script>
+    <style type="text/css">
+    #app {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        min-width: 300px;
+    }
+
+    .card-title {
+        cursor: pointer;
+    }
+    </style>
 </head>
 
 <body>
     <div id="app">
-        <Card padding=0>
-        <p slot="title">发现 50 个脚本适用于当前页面</p>
-        <i-Table height="400" highlight-row :columns="columns" :data="data"></i-Table>
+        <Card :padding="0">
+            <div slot="title" @click="bodySwitch" class="card-title">
+                <Icon :type="titleIcon"></Icon>
+                <span>发现 <Badge count="50"></Badge> 个脚本适用于当前页面</span>
+            </div>
+            <div slot="extra">
+                <Icon type="ios-close"></Icon>
+            </div>
+            <transition
+                name="custom-classes-transition"
+                enter-active-class="animated jello"
+                leave-active-class="animated bounceOutRight"
+            >
+                <i-Table height="400" highlight-row :columns="columns" :data="data" v-show="showBody"></i-Table>
+            </transition>
         </Card>
     </div>
     <script>
@@ -59,12 +84,16 @@
         },
         msg(msg) {
             app.$Message.info(msg);
+        },
+        changeParentSize(){
+            parent.document.querySelector("#jae_fetch_userjs_wrapper iframe").style.height = document.getElementById('app').offsetHeight
         }
     }
     let app = new Vue({
         el: '#app',
         components: { expandRow },
         mounted: function() {
+            Tools.changeParentSize()
             fetch('https://greasyfork.org/zh-CN/scripts/by-site/baidu.com.json')
                 .then((r) => {
                     r.json().then((json) => {
@@ -73,6 +102,8 @@
                 })
         },
         data: {
+            showBody: false,
+            titleIcon: 'chevron-up',
             //表头
             columns: [{
                     type: 'expand',
@@ -98,11 +129,11 @@
                     render: (h, params) => {
                         return h('span', {
                             attrs: {
-                                title:params.row.description
+                                title: params.row.description
                             },
                             style: {
-                                    cursor: 'pointer'
-                                },
+                                cursor: 'pointer'
+                            },
                             on: {
                                 click: _ => {
                                     window.open(params.row.url)
@@ -114,13 +145,13 @@
                 {
                     title: '作者',
                     render: (h, params) => {
-                        return h('span',{
+                        return h('span', {
                             attrs: {
-                                title:`点击访问${params.row.user.name}主页`
+                                title: `点击访问${params.row.user.name}主页`
                             },
                             style: {
-                                    cursor: 'pointer'
-                                },
+                                cursor: 'pointer'
+                            },
                             on: {
                                 click: _ => {
                                     window.open(params.row.user.url)
@@ -171,8 +202,17 @@
             //表格数据
             data: []
         },
+        watch:{
+            showBody(val){
+                this.titleIcon = val?'chevron-down':'chevron-up'
+                window.dispatchEvent(new Event('resize'))
+                Tools.changeParentSize()
+            }
+        },
         methods: {
-
+            bodySwitch() {
+                this.showBody = !this.showBody
+            }
         }
     })
     </script>
