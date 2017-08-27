@@ -157,7 +157,7 @@
                                 on: {
                                     click: (event) => {
                                         Tools.msg('脚本安装中...')
-                                        Tools.installUserJs(params.row.code_url)
+                                        window.open(params.row.code_url)
                                     }
                                 }
                             }, '安装')
