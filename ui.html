@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>xx</title>
+    <link rel="stylesheet" href="https://unpkg.com/iview/dist/styles/iview.css">
+    <script src="https://vuejs.org/js/vue.js"></script>
+    <script src="https://unpkg.com/iview/dist/iview.js"></script>
+    <script src="https://cdn.bootcss.com/timeago.js/3.0.2/timeago.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <i-Table highlight-row :columns="columns" :data="data"></i-Table>
+    </div>
+    <script>
+    let expand = `
+    <div>
+    <Row style="margin-bottom: 16px;">
+        <Col span="8">
+        <span class="expand-key">版本：</span>
+        <span class="expand-value">{{ row.version }}</span>
+        </Col>
+        <Col span="8">
+        <span class="expand-key">评分：</span>
+        <span class="expand-value">{{ row.fan_score }}</span>
+        </Col>
+        <Col span="8">
+        <span class="expand-key">总安装量：</span>
+        <span class="expand-value">{{ row.total_installs }}</span>
+        </Col>
+    </Row>
+    <Row>
+        <Col span="24">
+        <span class="expand-key">描述：</span>
+        <span class="expand-value">{{ row.description }}</span>
+        </Col>
+        </Row>
+    </div>
+        `
+    let expandRow = {
+        template: expand,
+        props: {
+            row: Object
+        }
+    }
+    let Tools = {
+        timeagoFormat(time) {
+            return timeago(null, 'zh_CN').format(time)
+        },
+        installUserJs(uri) {
+            let link = document.createElement("a");
+            link.href = uri;
+            link.click();
+        },
+        msg(msg) {
+            app.$Message.info(msg);
+        }
+    }
+    let app = new Vue({
+        el: '#app',
+        components: { expandRow },
+        mounted: function() {
+            fetch('https://greasyfork.org/zh-CN/scripts/by-site/baidu.com.json')
+                .then((r) => {
+                    r.json().then((json) => {
+                        this.data = json
+                    })
+                })
+        },
+        data: {
+            //表头
+            columns: [{
+                    type: 'expand',
+                    width: 50,
+                    render: (h, params) => {
+                        return h(expandRow, {
+                            props: {
+                                row: params.row
+                            }
+                        })
+                    }
+                },
+                {
+                    type: 'index',
+                    width: 60,
+                    align: 'center'
+                },
+                {
+                    title: '标题',
+                    key: 'name',
+                    width: '40%',
+                    ellipsis: false,
+                    render: (h, params) => {
+                        return h('span', {
+                            attrs: {
+                                title:params.row.description
+                            },
+                            style: {
+                                    cursor: 'pointer'
+                                },
+                            on: {
+                                click: _ => {
+                                    window.open(params.row.url)
+                                }
+                            }
+                        }, params.row.name)
+                    }
+                },
+                {
+                    title: '作者',
+                    render: (h, params) => {
+                        return h('span',{
+                            attrs: {
+                                title:`点击访问${params.row.user.name}主页`
+                            },
+                            style: {
+                                    cursor: 'pointer'
+                                },
+                            on: {
+                                click: _ => {
+                                    window.open(params.row.user.url)
+                                }
+                            }
+                        }, params.row.user.name)
+                    }
+                },
+                {
+                    title: '今日安装',
+                    key: 'daily_installs',
+                    sortable: true
+                },
+                {
+                    title: '更新时间',
+                    key: 'code_updated_at',
+                    render: (h, params) => {
+                        return h('span', Tools.timeagoFormat(params.row.code_updated_at))
+                    },
+                    sortable: true
+                },
+                {
+                    title: '操作',
+                    key: 'code_url',
+                    align: 'center',
+                    render: (h, params) => {
+                        return h('div', [
+                            h('Button', {
+                                props: {
+                                    type: 'primary',
+                                    size: 'small',
+                                    icon: 'ios-download-outline'
+                                },
+                                style: {
+                                    marginRight: '5px'
+                                },
+                                on: {
+                                    click: (event) => {
+                                        Tools.msg('脚本安装中...')
+                                        Tools.installUserJs(params.row.code_url)
+                                    }
+                                }
+                            }, '安装')
+                        ])
+                    }
+                }
+            ],
+            //表格数据
+            data: []
+        },
+        methods: {
+
+        }
+    })
+    </script>
+</body>
+
+</html>
