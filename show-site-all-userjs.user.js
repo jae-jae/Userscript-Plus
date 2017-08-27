@@ -40,7 +40,7 @@ class FetchUserjs{
     <style>
     #jae_fetch_userjs {
         position: fixed;
-        width: 800px;
+        width: 900px;
         background-color: #f5f6f7;
         border: 1px solid #adb1bb;
         color: #424e67;
