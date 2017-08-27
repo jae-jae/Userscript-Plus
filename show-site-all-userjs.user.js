@@ -47,7 +47,7 @@ class FetchUserjs{
         bottom: 10px;
         right: 20px;
         z-index: 9999;
-        height: 405px;
+        height: 455px;
     }
     </style>
     <div id="jae_fetch_userjs" class="">
