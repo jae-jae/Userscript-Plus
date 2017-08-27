@@ -50,7 +50,7 @@
             return timeago(null, 'zh_CN').format(time)
         },
         installUserJs(uri) {
-            let link = document.createElement("a");
+            let link = parent.document.createElement("a");
             link.href = uri;
             link.click();
         },
@@ -157,7 +157,7 @@
                                 on: {
                                     click: (event) => {
                                         Tools.msg('脚本安装中...')
-                                        window.open(params.row.code_url)
+                                        Tools.installUserJs(params.row.code_url)
                                     }
                                 }
                             }, '安装')
