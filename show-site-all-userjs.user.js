@@ -134,12 +134,12 @@ class FetchUserjs{
 }
 
 ljs.exec(['jQuery','iframe'],()=>{
-    let fu = new FetchUserjs();
+    //let fu = new FetchUserjs();
     //fu.render();
-    $('body').append(fu.tplBox);
+    //$('body').append(fu.tplBox);
     let ui = GM_getResourceText('ui');
     console.log(ui);
-    iframe.create($('#jae_fetch_userjs')[0],ui);
+    iframe.create($('body')[0],ui);
 });
 
 /* jshint ignore:start */
