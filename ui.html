@@ -45,19 +45,19 @@
             </div>
             <div slot="extra">
                 <span v-show="showBody">
-                     <i-Button type="dashed" @click="close">
+                     <i-Button type="dashed" @click="open('https://greasyfork.org/zh-CN/scripts/24508/feedback')">
                         <Icon type="bug"></Icon>
                     </i-Button>
 
-                    <i-Button type="dashed" @click="close">
+                    <i-Button type="dashed" @click="open('https://greasyfork.org/zh-CN/scripts/24508')">
                         <Icon type="fork"></Icon>
                     </i-Button>
 
-                    <i-Button type="dashed" @click="close">
+                    <i-Button type="dashed" @click="open('https://github.com/jae-jae/Show-Site-All-UserJS')">
                         <Icon type="social-github"></Icon>
                     </i-Button>
 
-                     <i-Button type="dashed" @click="close">
+                     <i-Button type="dashed" @click="showDonate = true">
                         <Icon type="card"></Icon>
                     </i-Button>
                 </span>
@@ -71,6 +71,37 @@
                 </div>
             </transition>
         </Card>
+         <Modal v-model="showDonate" width="400">
+
+         <Tabs value="wechat">
+
+            <Tab-Pane label="微信打赏" name="wechat">
+                 <div style="text-align: center;">
+                    <img width="200px" src="http://ww1.sinaimg.cn/large/7de3675bly1fizyy2pivwj2074074js6.jpg">
+                </div>
+            </Tab-Pane>
+
+            <Tab-Pane label="支付宝打赏" name="alipay">
+                 <div style="text-align: center;">
+                    <img width="200px" src="http://ww1.sinaimg.cn/large/7de3675bly1fizyyh7m7yj20ci0ciwfl.jpg">
+                </div>
+            </Tab-Pane>
+
+            <Tab-Pane label="PayPal打赏" name="paypal">
+                 <div style="text-align: center;">
+                     <a href="https://paypal.me/jaepay/10" target="_blank">
+                        <img src="http://ww1.sinaimg.cn/large/7de3675bly1fizzsw92owj207s03s748.jpg"> 
+                     </a>
+                </div>
+            </Tab-Pane>
+
+         </Tabs>
+
+ <div slot="footer">
+                <i-Button type="info" size="large" long @click="showDonate=false">关闭</i-Button>
+            </div>
+
+    </Modal>
     </div>
     <script>
     let expand = `
@@ -142,6 +173,7 @@
             showBody: false,
             titleIcon: 'chevron-up',
             count: 0,
+            showDonate:false,
             //表头
             columns: [{
                     type: 'expand',
@@ -263,6 +295,9 @@
             },
             bodySwitch() {
                 this.showBody = !this.showBody
+            },
+            open(url){
+                window.open(url)
             }
         }
     })
