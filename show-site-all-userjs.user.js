@@ -94,34 +94,13 @@ class FetchUserjs{
     }
 
     bindEvent(){
-        /*$('#jae_fetch_userjs_switch').click(()=>{
-            $('#jae_fetch_userjs').toggleClass('jae_fetch_userjs_show_file');
-            clearTimeout(this.timeId);
-        });
-
-        $(".jae_fetch_userjs_file_name").click(function(){
-            let url = $(this).data('url');
-            window.open(url);
-        });
-
-        $("#jae_fetch_userjs_close").click(()=>{
-            sessionStorage.setItem(this.quietKey,1);
-            $('#jae_fetch_userjs_wrapper').remove();
-        });
-        
-        $(".jae_fetch_userjs_install").click(function(){
-            $(this).html('<i></i>下载中...');
-        });
-
-        $("#jae_fetch_userjs_home").click(()=>{
-            window.open(this.homeUrl);
-        });
-
         this.timeId = setTimeout(()=>{
             $('#jae_fetch_userjs_wrapper').remove();
-        },this.showTime*1000);*/
+        },this.showTime*1000);
+
         this.addEventListener('max',()=>{
             this.setSize(860,500)
+            clearTimeout(this.timeId);
         })
 
         this.addEventListener('min',()=>{
@@ -131,7 +110,7 @@ class FetchUserjs{
         })
 
         this.addEventListener('close',()=>{
-            //sessionStorage.setItem(this.quietKey,1);
+            sessionStorage.setItem(this.quietKey,1);
             $('#jae_fetch_userjs_wrapper').remove();
         })
     }
@@ -144,8 +123,16 @@ class FetchUserjs{
     render(){
         this.isQuiet || this.getData(this.host,(json)=>{
             if(json.length){
-                let box = juicer(this.tplBox,{list:json,count:json.length});
-                $('body').append(box);
+                
+                $('body').append(this.tplBox);
+
+                let ui = GM_getResourceText('ui');
+                let dom = document.getElementById('jae_fetch_userjs')
+                var tpl = '<iframe src="about:blank" style="width:100%;height:100%;border:0px;display: block!important;" allowTransparency="true"></iframe>';
+                dom.innerHTML = tpl;
+                var iframeDom = dom.children[0];
+                iframe.write(iframeDom,ui);
+
                 this.bindEvent();
             }
         });
@@ -153,19 +140,10 @@ class FetchUserjs{
 
 }
 
-ljs.exec(['jQuery','iframe'],()=>{
+ljs.exec(['jQuery','juicer','iframe'],()=>{
     let fu = new FetchUserjs();
-    //fu.render();
-    $('body').append(fu.tplBox);
-    let ui = GM_getResourceText('ui');
-    console.log(ui);
-    //iframe.create($('#jae_fetch_userjs')[0],ui);
-    let dom = document.getElementById('jae_fetch_userjs')
-    var tpl = '<iframe src="about:blank" style="width:100%;height:100%;border:0px;display: block!important;" allowTransparency="true"></iframe>';
-        dom.innerHTML = tpl;
-        var iframeDom = dom.children[0];
-        iframe.write(iframeDom,ui);
-    fu.bindEvent()
+    fu.render();
+
 });
 
 /* jshint ignore:start */

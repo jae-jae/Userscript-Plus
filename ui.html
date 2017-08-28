@@ -3,31 +3,33 @@
 
 <head>
     <meta charset="utf-8">
-    <title>xx</title>
+    <title>Show Site All UserJS</title>
     <link href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/iview/dist/styles/iview.css">
     <script src="https://vuejs.org/js/vue.js"></script>
     <script src="https://unpkg.com/iview/dist/iview.js"></script>
     <script src="https://cdn.bootcss.com/timeago.js/3.0.2/timeago.min.js"></script>
     <style type="text/css">
-    body{
-        background:none transparent;
+    body {
+        background: none transparent;
     }
+
     #app {
         position: fixed;
         bottom: 0;
         right: 0;
         width: 100%;
     }
+
     .card-title {
         cursor: pointer;
     }
 
-    .ivu-card-extra{
-        top:8px;
+    .ivu-card-extra {
+        top: 8px;
     }
 
-    .ivu-table-body{
+    .ivu-table-body {
         height: 400px;
         overflow-x: hidden;
     }
@@ -42,7 +44,6 @@
                 <span>发现 <Badge :count="count"></Badge> 个脚本适用于当前页面</span>
             </div>
             <div slot="extra">
-
                 <span v-show="showBody">
                      <i-Button type="dashed" @click="close">
                         <Icon type="bug"></Icon>
@@ -60,23 +61,15 @@
                         <Icon type="card"></Icon>
                     </i-Button>
                 </span>
-               
                 <i-Button type="dashed" @click="close">
                     <Icon type="close-round"></Icon>
                 </i-Button>
-                
             </div>
-
-            <transition
-                name="custom-classes-transition"
-                enter-active-class="animated jello"
-                leave-active-class="animated bounceOutRight"
-            >
+            <transition name="custom-classes-transition" enter-active-class="animated jello" leave-active-class="animated bounceOutRight">
                 <div v-show="showBody">
-                 <i-Table highlight-row :columns="columns" :data="data"></i-Table>
+                    <i-Table highlight-row :columns="columns" :data="data"></i-Table>
                 </div>
             </transition>
-           
         </Card>
     </div>
     <script>
@@ -122,26 +115,33 @@
         msg(msg) {
             app.$Message.info(msg);
         },
-         dispatchEvent(eventName){
-                parent.document.getElementById('jae_fetch_userjs').dispatchEvent(new Event(eventName))
-            }
+        dispatchEvent(eventName) {
+            parent.document.getElementById('jae_fetch_userjs').dispatchEvent(new Event(eventName))
+        },
+        //获取油猴缓存好的脚本数据
+        getData() {
+            let data = sessionStorage.getItem('jae_fetch_userjs_cache');
+            data = JSON.parse(data);
+            return data;
+        }
     }
     let app = new Vue({
         el: '#app',
         components: { expandRow },
         mounted: function() {
-            let host =  location.host.split('.').splice(-2).join('.');
+            /*let host =  location.host.split('.').splice(-2).join('.');
             fetch(`https://greasyfork.org/zh-CN/scripts/by-site/${host}.json`)
                 .then((r) => {
                     r.json().then((json) => {
                         this.data = json
                     })
-                })
+                })*/
+            this.data = Tools.getData()
         },
         data: {
             showBody: false,
             titleIcon: 'chevron-up',
-            count:0,
+            count: 0,
             //表头
             columns: [{
                     type: 'expand',
@@ -240,16 +240,16 @@
             //表格数据
             data: []
         },
-        watch:{
-            data(val){
+        watch: {
+            data(val) {
                 this.count = val.length
             },
-            showBody(val){
-                if(val){
+            showBody(val) {
+                if (val) {
                     //最大化
                     this.titleIcon = 'chevron-down'
                     Tools.dispatchEvent('max')
-                }else{
+                } else {
                     //最小化
                     this.titleIcon = 'chevron-up'
                     Tools.dispatchEvent('min')
@@ -258,7 +258,7 @@
             }
         },
         methods: {
-            close(){
+            close() {
                 Tools.dispatchEvent('close')
             },
             bodySwitch() {
