@@ -41,14 +41,12 @@ class FetchUserjs{
     <style>
     #jae_fetch_userjs {
         position: fixed;
-        width: 860px;
-        border: 1px solid #adb1bb;
-        color: #424e67;
-        z-index: 1000;
+        width: 350px;
+        /* border: 1px solid #adb1bb; */
         bottom: 10px;
         right: 20px;
         z-index: 9999;
-        height: 455px;
+        height: 51px;
     }
     </style>
     <div id="jae_fetch_userjs" class="">
@@ -87,8 +85,16 @@ class FetchUserjs{
         
     }
 
+    setSize(w,h){
+        $('#jae_fetch_userjs').css({width:w,height:h})
+    }
+
+    addEventListener(eventName,handler){
+        document.getElementById('jae_fetch_userjs').addEventListener(eventName,handler)
+    }
+
     bindEvent(){
-        $('#jae_fetch_userjs_switch').click(()=>{
+        /*$('#jae_fetch_userjs_switch').click(()=>{
             $('#jae_fetch_userjs').toggleClass('jae_fetch_userjs_show_file');
             clearTimeout(this.timeId);
         });
@@ -113,7 +119,21 @@ class FetchUserjs{
 
         this.timeId = setTimeout(()=>{
             $('#jae_fetch_userjs_wrapper').remove();
-        },this.showTime*1000);
+        },this.showTime*1000);*/
+        this.addEventListener('max',()=>{
+            this.setSize(860,500)
+        })
+
+        this.addEventListener('min',()=>{
+            setTimeout(()=>{
+                this.setSize(350,51)
+            },800)
+        })
+
+        this.addEventListener('close',()=>{
+            //sessionStorage.setItem(this.quietKey,1);
+            $('#jae_fetch_userjs_wrapper').remove();
+        })
     }
 
     get isQuiet(){
@@ -139,7 +159,13 @@ ljs.exec(['jQuery','iframe'],()=>{
     $('body').append(fu.tplBox);
     let ui = GM_getResourceText('ui');
     console.log(ui);
-    iframe.create($('#jae_fetch_userjs')[0],ui);
+    //iframe.create($('#jae_fetch_userjs')[0],ui);
+    let dom = document.getElementById('jae_fetch_userjs')
+    var tpl = '<iframe src="about:blank" style="width:100%;height:100%;border:0px;display: block!important;" allowTransparency="true"></iframe>';
+        dom.innerHTML = tpl;
+        var iframeDom = dom.children[0];
+        iframe.write(iframeDom,ui);
+    fu.bindEvent()
 });
 
 /* jshint ignore:start */

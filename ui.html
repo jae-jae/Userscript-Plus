@@ -10,15 +10,26 @@
     <script src="https://unpkg.com/iview/dist/iview.js"></script>
     <script src="https://cdn.bootcss.com/timeago.js/3.0.2/timeago.min.js"></script>
     <style type="text/css">
+    body{
+        background:none transparent;
+    }
     #app {
         position: fixed;
         bottom: 0;
         right: 0;
-        min-width: 300px;
+        width: 100%;
     }
-
     .card-title {
         cursor: pointer;
+    }
+
+    .ivu-card-extra{
+        top:8px;
+    }
+
+    .ivu-table-body{
+        height: 400px;
+        overflow-x: hidden;
     }
     </style>
 </head>
@@ -28,18 +39,44 @@
         <Card :padding="0">
             <div slot="title" @click="bodySwitch" class="card-title">
                 <Icon :type="titleIcon"></Icon>
-                <span>发现 <Badge count="50"></Badge> 个脚本适用于当前页面</span>
+                <span>发现 <Badge :count="count"></Badge> 个脚本适用于当前页面</span>
             </div>
             <div slot="extra">
-                <Icon type="ios-close"></Icon>
+
+                <span v-show="showBody">
+                     <i-Button type="dashed" @click="close">
+                        <Icon type="bug"></Icon>
+                    </i-Button>
+
+                    <i-Button type="dashed" @click="close">
+                        <Icon type="fork"></Icon>
+                    </i-Button>
+
+                    <i-Button type="dashed" @click="close">
+                        <Icon type="social-github"></Icon>
+                    </i-Button>
+
+                     <i-Button type="dashed" @click="close">
+                        <Icon type="card"></Icon>
+                    </i-Button>
+                </span>
+               
+                <i-Button type="dashed" @click="close">
+                    <Icon type="close-round"></Icon>
+                </i-Button>
+                
             </div>
+
             <transition
                 name="custom-classes-transition"
                 enter-active-class="animated jello"
                 leave-active-class="animated bounceOutRight"
             >
-                <i-Table height="400" highlight-row :columns="columns" :data="data" v-show="showBody"></i-Table>
+                <div v-show="showBody">
+                 <i-Table highlight-row :columns="columns" :data="data"></i-Table>
+                </div>
             </transition>
+           
         </Card>
     </div>
     <script>
@@ -85,16 +122,16 @@
         msg(msg) {
             app.$Message.info(msg);
         },
-        changeParentSize(){
-            parent.document.querySelector("#jae_fetch_userjs_wrapper iframe").style.height = document.getElementById('app').offsetHeight
-        }
+         dispatchEvent(eventName){
+                parent.document.getElementById('jae_fetch_userjs').dispatchEvent(new Event(eventName))
+            }
     }
     let app = new Vue({
         el: '#app',
         components: { expandRow },
         mounted: function() {
-            Tools.changeParentSize()
-            fetch('https://greasyfork.org/zh-CN/scripts/by-site/baidu.com.json')
+            let host =  location.host.split('.').splice(-2).join('.');
+            fetch(`https://greasyfork.org/zh-CN/scripts/by-site/${host}.json`)
                 .then((r) => {
                     r.json().then((json) => {
                         this.data = json
@@ -104,6 +141,7 @@
         data: {
             showBody: false,
             titleIcon: 'chevron-up',
+            count:0,
             //表头
             columns: [{
                     type: 'expand',
@@ -203,13 +241,26 @@
             data: []
         },
         watch:{
+            data(val){
+                this.count = val.length
+            },
             showBody(val){
-                this.titleIcon = val?'chevron-down':'chevron-up'
+                if(val){
+                    //最大化
+                    this.titleIcon = 'chevron-down'
+                    Tools.dispatchEvent('max')
+                }else{
+                    //最小化
+                    this.titleIcon = 'chevron-up'
+                    Tools.dispatchEvent('min')
+                }
                 window.dispatchEvent(new Event('resize'))
-                Tools.changeParentSize()
             }
         },
         methods: {
+            close(){
+                Tools.dispatchEvent('close')
+            },
             bodySwitch() {
                 this.showBody = !this.showBody
             }
