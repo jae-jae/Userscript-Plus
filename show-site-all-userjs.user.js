@@ -13,7 +13,9 @@
 // @require      https://cdn.bootcss.com/babel-core/5.6.15/browser.min.js
 // @require     https://raw.githubusercontent.com/jae-jae/l.js/master/userjs/l.userjs.min.js
 // @require     https://gist.githubusercontent.com/jae-jae/35a1833079d26e6c9d9c6d5bed982353/raw/userjs-base.js
-// @resource     ui    http://www.dev/Show-Site-All-UserJS/ui.html?xx3dd353
+// @require     https://cdn.bootcss.com/vue/2.4.2/vue.js
+// @require     https://cdn.bootcss.com/iview/2.2.0/iview.js
+// @resource     ui    http://www.dev/Show-Site-All-UserJS/ui.html?xfg45
 // @grant        GM_xmlhttpRequest
 // @grant        GM_getResourceText
 // @noframes
@@ -114,6 +116,12 @@ class FetchUserjs{
             $('#jae_fetch_userjs_wrapper').remove();
         })
     }
+    
+    //注入对象到iframe
+    injectObj(frameWindow){
+		frameWindow.Vue = Vue;
+		frameWindow.timeago = timeago;
+    }
 
     get isQuiet(){
         let quiet = sessionStorage.getItem(this.quietKey);
@@ -128,11 +136,12 @@ class FetchUserjs{
 
                 let ui = GM_getResourceText('ui');
                 let dom = document.getElementById('jae_fetch_userjs')
-                var tpl = '<iframe src="about:blank" style="width:100%;height:100%;border:0px;display: block!important;" allowTransparency="true"></iframe>';
+                var tpl = '<iframe name="jaeFetchUserJSFrame" src="about:blank" style="width:100%;height:100%;border:0px;display: block!important;" allowTransparency="true"></iframe>';
                 dom.innerHTML = tpl;
+  				this.injectObj(jaeFetchUserJSFrame.window);
+
                 var iframeDom = dom.children[0];
                 iframe.write(iframeDom,ui);
-
                 this.bindEvent();
             }
         });
@@ -140,10 +149,9 @@ class FetchUserjs{
 
 }
 
-ljs.exec(['jQuery','juicer','iframe'],()=>{
+ljs.exec(['jQuery','timeago','juicer','iframe'],()=>{
     let fu = new FetchUserjs();
     fu.render();
-
 });
 
 /* jshint ignore:start */

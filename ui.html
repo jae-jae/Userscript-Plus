@@ -4,11 +4,12 @@
 <head>
     <meta charset="utf-8">
     <title>Show Site All UserJS</title>
-    <link href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/iview/dist/styles/iview.css">
-    <script src="https://vuejs.org/js/vue.js"></script>
-    <script src="https://unpkg.com/iview/dist/iview.js"></script>
-    <script src="https://cdn.bootcss.com/timeago.js/3.0.2/timeago.min.js"></script>
+    <!-- <link href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet"> -->
+    <!-- <link rel="stylesheet" href="https://unpkg.com/iview/dist/styles/iview.css"> -->
+    <!-- <script src="https://vuejs.org/js/vue.js"></script> -->
+    <!-- <script src="https://unpkg.com/iview/dist/iview.js"></script> -->
+    <!-- <script src="https://cdn.bootcss.com/timeago.js/3.0.2/timeago.min.js"></script> -->
+
     <style type="text/css">
     body {
         background: none transparent;
@@ -156,8 +157,9 @@
             return data;
         }
     }
+    let appEl = document.getElementById('app')
     let app = new Vue({
-        el: '#app',
+        el: appEl,
         components: { expandRow },
         mounted: function() {
             /*let host =  location.host.split('.').splice(-2).join('.');
