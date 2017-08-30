@@ -13,11 +13,12 @@
 // @require      https://cdn.bootcss.com/babel-core/5.6.15/browser.min.js
 // @require     https://raw.githubusercontent.com/jae-jae/l.js/master/userjs/l.userjs.min.js
 // @require     https://gist.githubusercontent.com/jae-jae/35a1833079d26e6c9d9c6d5bed982353/raw/userjs-base.js
-// @require     https://cdn.bootcss.com/vue/2.4.2/vue.js
-// @require     https://cdn.bootcss.com/iview/2.2.0/iview.js
-// @resource     ui    http://www.dev/Show-Site-All-UserJS/ui.html?xfg45
+// @resource     ui     http://www.dev/Show-Site-All-UserJS/ui.html?xfg45
+// @resource     uiJs   http://www.dev/Show-Site-All-UserJS/ui.js
 // @grant        GM_xmlhttpRequest
 // @grant        GM_getResourceText
+// @grant        GM_getValue
+// @grant        GM_setValue
 // @noframes
 // @connect     cdn.bootcss.com
 // @connect     raw.githubusercontent.com
@@ -116,11 +117,17 @@ class FetchUserjs{
             $('#jae_fetch_userjs_wrapper').remove();
         })
     }
+
+    evalJs(context,jsStr){
+    	return function(jsStr){
+    		eval(jsStr);
+    	}.call(context,jsStr);
+    }
     
     //注入对象到iframe
     injectObj(frameWindow){
-		frameWindow.Vue = Vue;
-		frameWindow.timeago = timeago;
+		let uiJs = GM_getResourceText('uiJs');
+		this.evalJs(frameWindow,uiJs);
     }
 
     get isQuiet(){
@@ -138,10 +145,11 @@ class FetchUserjs{
                 let dom = document.getElementById('jae_fetch_userjs')
                 var tpl = '<iframe name="jaeFetchUserJSFrame" src="about:blank" style="width:100%;height:100%;border:0px;display: block!important;" allowTransparency="true"></iframe>';
                 dom.innerHTML = tpl;
-  				this.injectObj(jaeFetchUserJSFrame.window);
-
                 var iframeDom = dom.children[0];
                 iframe.write(iframeDom,ui);
+
+                this.injectObj(jaeFetchUserJSFrame.window);
+
                 this.bindEvent();
             }
         });
@@ -149,7 +157,7 @@ class FetchUserjs{
 
 }
 
-ljs.exec(['jQuery','timeago','juicer','iframe'],()=>{
+ljs.exec(['jQuery','juicer','iframe'],()=>{
     let fu = new FetchUserjs();
     fu.render();
 });
