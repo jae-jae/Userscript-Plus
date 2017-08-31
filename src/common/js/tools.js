@@ -2,15 +2,13 @@ import timeago from 'timeago.js'
 
 export default {
     timeagoFormat(time) {
-        return timeago(null, 'zh_CN').format(time)
+        let lang = navigator.language === 'zh-CN'?'zh-CN':'en-US';
+        return timeago(null, lang).format(time)
     },
     installUserJs(uri) {
         let link = parent.document.createElement("a");
         link.href = uri;
         link.click();
-    },
-    msg(msg) {
-        app.$Message.info(msg);
     },
     dispatchEvent(eventName) {
         parent.document.getElementById('jae_fetch_userjs').dispatchEvent(new Event(eventName))

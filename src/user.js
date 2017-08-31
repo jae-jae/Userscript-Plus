@@ -40,7 +40,7 @@ var inline_src = (<><![CDATA[
             this.showTime = 10;
             this.quietKey = 'jae_fetch_userjs_quiet';
             this.cacheKey = 'jae_fetch_userjs_cache';
-            this.tplBox = '<div id="jae_fetch_userjs_wrapper"><style>    #jae_fetch_userjs {        position: fixed;        width: 350px;                bottom: 10px;        right: 20px;        z-index: 9999;        height: 51px;box-shadow: 0px 1px 4px rgba(0,0,0,0.3),\t\t\t\t0px 0px 20px rgba(0,0,0,0.1) inset;    }#jae_fetch_userjs::before,#jae_fetch_userjs::after {   content:"";   position:absolute;   z-index:-1;}#jae_fetch_userjs::before,#jae_fetch_userjs::after {   content:"";   position:absolute;   z-index:-1;   bottom:15px;   left:10px;   width:50%;   height:20%;}#jae_fetch_userjs::before,#jae_fetch_userjs::after {   content:"";   position:absolute;   z-index:-1;   bottom:15px;   left:10px;   width:50%;   height:20%;   box-shadow:0 15px 10px rgba(0, 0, 0, 0.7);   transform:rotate(-3deg);}#jae_fetch_userjs::after{   right:10px;   left:auto;   transform:rotate(3deg); }</style><div id="jae_fetch_userjs" class=""></div></div>';
+            this.tplBox = '<div id="jae_fetch_userjs_wrapper"><style>    #jae_fetch_userjs {        position: fixed;        width: 370px;                bottom: 10px;        right: 20px;        z-index: 9999999999;        height: 51px;box-shadow: 0px 1px 4px rgba(0,0,0,0.3),\t\t\t\t0px 0px 20px rgba(0,0,0,0.1) inset;    }#jae_fetch_userjs::before,#jae_fetch_userjs::after {   content:"";   position:absolute;   z-index:-1;}#jae_fetch_userjs::before,#jae_fetch_userjs::after {   content:"";   position:absolute;   z-index:-1;   bottom:15px;   left:10px;   width:50%;   height:20%;}#jae_fetch_userjs::before,#jae_fetch_userjs::after {   content:"";   position:absolute;   z-index:-1;   bottom:15px;   left:10px;   width:50%;   height:20%;   box-shadow:0 15px 10px rgba(0, 0, 0, 0.7);   transform:rotate(-3deg);}#jae_fetch_userjs::after{   right:10px;   left:auto;   transform:rotate(3deg); }</style><div id="jae_fetch_userjs" class=""></div></div>';
         }
 
         getJSON(url,callback){
@@ -93,7 +93,7 @@ var inline_src = (<><![CDATA[
 
             this.addEventListener('min',()=>{
                 setTimeout(()=>{
-                    this.setSize(350,51)
+                    this.setSize(370,51)
                 },800)
             })
 

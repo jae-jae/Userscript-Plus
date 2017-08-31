@@ -3,29 +3,44 @@
         <Card :padding="0">
             <div slot="title" @click="bodySwitch" class="card-title">
                 <Icon :type="titleIcon"></Icon>
-                <span>发现 <Badge :count="count"></Badge> 个脚本适用于当前页面</span>
+                <!--<span>发现 <Badge :count="count"></Badge> 个脚本适用于当前页面</span>-->
+                <i18n path="table.tips" tag="span">
+                    <Badge place="count" :count="count"></Badge>
+                </i18n>
             </div>
             <div slot="extra">
                 <span v-show="showBody">
-                     <Button type="dashed" @click="open('https://greasyfork.org/zh-CN/scripts/24508/feedback')">
-                        <Icon type="bug"></Icon>
-                    </Button>
+                    <Tooltip :content="$t('table.feedback')" placement="bottom">
+                        <Button type="dashed" @click="open('https://greasyfork.org/zh-CN/scripts/24508/feedback')">
+                            <Icon type="bug"></Icon>
+                        </Button>
+                    </Tooltip>
 
-                    <Button type="dashed" @click="open('https://greasyfork.org/zh-CN/scripts/24508')">
-                        <Icon type="fork"></Icon>
-                    </Button>
+                    <Tooltip content="GreasyFork" placement="bottom">
+                        <Button type="dashed" @click="open('https://greasyfork.org/zh-CN/scripts/24508')">
+                            <Icon type="fork"></Icon>
+                        </Button>
+                    </Tooltip>
 
-                    <Button type="dashed" @click="open('https://github.com/jae-jae/Show-Site-All-UserJS')">
-                        <Icon type="social-github"></Icon>
-                    </Button>
+                    <Tooltip content="GitHub" placement="bottom">
+                        <Button type="dashed" @click="open('https://github.com/jae-jae/Show-Site-All-UserJS')">
+                            <Icon type="social-github"></Icon>
+                        </Button>
+                    </Tooltip>
 
-                     <Button type="dashed" @click="showDonate = true">
-                        <Icon type="card"></Icon>
-                    </Button>
+                    <Tooltip :content="$t('table.donate')" placement="bottom">
+                         <Button type="dashed" @click="showDonate = true">
+                            <Icon type="card"></Icon>
+                        </Button>
+                    </Tooltip>
                 </span>
-                <Button type="dashed" @click="close">
-                    <Icon type="close-round"></Icon>
-                </Button>
+
+                <Tooltip :content="$t('table.close')" placement="left">
+                    <Button type="dashed" @click="close">
+                        <Icon type="close-round"></Icon>
+                    </Button>
+                </Tooltip>
+
             </div>
             <transition name="custom-classes-transition" enter-active-class="animated jello" leave-active-class="animated bounceOutRight">
                 <div v-show="showBody">
@@ -37,19 +52,19 @@
 
             <Tabs value="wechat">
 
-                <Tab-Pane label="微信打赏" name="wechat">
+                <Tab-Pane :label="$t('table.wechat')" name="wechat">
                     <div style="text-align: center;">
                         <img width="200px" src="http://ww1.sinaimg.cn/large/7de3675bly1fizyy2pivwj2074074js6.jpg">
                     </div>
                 </Tab-Pane>
 
-                <Tab-Pane label="支付宝打赏" name="alipay">
+                <Tab-Pane :label="$t('table.alipay')" name="alipay">
                     <div style="text-align: center;">
                         <img width="200px" src="http://ww1.sinaimg.cn/large/7de3675bly1fizyyh7m7yj20ci0ciwfl.jpg">
                     </div>
                 </Tab-Pane>
 
-                <Tab-Pane label="PayPal打赏" name="paypal">
+                <Tab-Pane :label="$t('table.paypal')" name="paypal">
                     <div style="text-align: center;">
                         <a href="https://paypal.me/jaepay/10" target="_blank">
                             <img src="http://ww1.sinaimg.cn/large/7de3675bly1fizzsw92owj207s03s748.jpg">
@@ -60,7 +75,7 @@
             </Tabs>
 
             <div slot="footer">
-                <Button type="info" size="large" long @click="showDonate=false">关闭</Button>
+                <Button type="info" size="large" long @click="showDonate=false">{{$t('table.closeDonate')}}</Button>
             </div>
 
         </Modal>
@@ -70,6 +85,7 @@
 <script>
     import Tools from '../common/js/tools'
     import Info from './Info.vue'
+    import Vue from 'vue'
     export default {
         components: { Info },
         mounted: function() {
@@ -83,7 +99,7 @@
                 })*/
             this.data = Tools.getData()
         },
-        data: ()=>{
+        data: function (){
             return {
                 showBody: false,
                 titleIcon: 'chevron-up',
@@ -107,7 +123,7 @@
                         align: 'center'
                     },
                     {
-                        title: '标题',
+                        title: this.$t('table.title'),
                         key: 'name',
                         width: '35%',
                         ellipsis: false,
@@ -128,11 +144,11 @@
                         }
                     },
                     {
-                        title: '作者',
+                        title: this.$t('table.author'),
                         render: (h, params) => {
                             return h('span', {
                                 attrs: {
-                                    title: `点击访问${params.row.user.name}主页`
+                                    title:this.$t('table.authorTips',{name:params.row.user.name})
                                 },
                                 style: {
                                     cursor: 'pointer'
@@ -146,12 +162,12 @@
                         }
                     },
                     {
-                        title: '今日安装',
+                        title: this.$t('table.dailyInstalls'),
                         key: 'daily_installs',
                         sortable: true
                     },
                     {
-                        title: '更新时间',
+                        title: this.$t('table.updatedTime'),
                         key: 'code_updated_at',
                         render: (h, params) => {
                             return h('span', Tools.timeagoFormat(params.row.code_updated_at))
@@ -159,7 +175,7 @@
                         sortable: true
                     },
                     {
-                        title: '操作',
+                        title: this.$t('table.action'),
                         key: 'code_url',
                         align: 'center',
                         render: (h, params) => {
@@ -175,11 +191,12 @@
                                     },
                                     on: {
                                         click: (event) => {
-                                            Tools.msg('脚本安装中...')
+                                            //Tools.msg('脚本安装中...')
+                                            this.$Message.info('脚本安装中...');
                                             Tools.installUserJs(params.row.code_url)
                                         }
                                     }
-                                }, '安装')
+                                }, this.$t('table.install'))
                             ])
                         }
                     }
