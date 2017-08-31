@@ -99,7 +99,7 @@
                           style.appendChild(window.document.createTextNode(css));
                       }
 
-                      head.appendChild(style);
+                      head.insertBefore(style,head.children[0]);
                       resolve()
                   })
               })
