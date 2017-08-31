@@ -23,7 +23,7 @@
                     </Tooltip>
 
                     <Tooltip content="GitHub" placement="bottom">
-                        <Button type="dashed" @click="open('https://github.com/jae-jae/Show-Site-All-UserJS')">
+                        <Button type="dashed" @click="open('https://github.com/jae-jae/Userscript-Plus')">
                             <Icon type="social-github"></Icon>
                         </Button>
                     </Tooltip>
