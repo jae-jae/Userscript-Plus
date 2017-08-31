@@ -75,7 +75,7 @@
           execJs(url) {
               return new Promise((resolve, reject) => {
                   this.gmAjax(url, (content) => {
-                      eval.call(window, content)
+                      window.eval.call(window, content)
                       resolve()
                   })
               })
@@ -253,7 +253,7 @@
               }
           });
       }
-      let app
+      let app,Vue,timeago
       Tools.execJs('https://cdn.bootcss.com/vue/2.4.2/vue.js')
           .then(_ => {
               return Tools.execJs('https://cdn.bootcss.com/iview/2.2.0/iview.js')
@@ -265,6 +265,10 @@
               return Tools.execCss('https://cdn.bootcss.com/iview/2.2.0/styles/iview.css').then(_ => {
                   return Tools.execCss('https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css')
               })
+          })
+          .then(_=>{
+              Vue = window.Vue
+              timeago = window.timeago
           })
           .then(_ => {
               let appEl = window.document.getElementById('app')
