@@ -17,8 +17,7 @@ Vue.use(VueI18n)
 Vue.use(iView)
 
 const i18n = new VueI18n({
-    //locale: navigator.language,    // 语言标识
-    locale: 'en-US',
+    locale: navigator.language,    // 语言标识
     messages: localeMessage
 })
 
