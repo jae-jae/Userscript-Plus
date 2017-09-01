@@ -7,7 +7,7 @@
 <script>
     import MainTable from './components/Table.vue'
     export default {
-        components:{MainTable}
+      components: {MainTable}
     }
 </script>
 

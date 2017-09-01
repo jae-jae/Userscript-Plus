@@ -25,8 +25,8 @@
 
 <script>
     export default {
-        props: {
-            row: Object
-        }
+      props: {
+        row: Object
+      }
     }
 </script>
