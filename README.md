@@ -7,7 +7,7 @@
 [![iView](https://img.shields.io/badge/iView-2.2.0-brightgreen.svg)](https://www.iviewui.com)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 [![i18n](https://img.shields.io/badge/i18n-PR-blue.svg)](https://github.com/jae-jae/Userscript-Plus/tree/master/src/common/lang)
-[![GitHub stars](https://img.shields.io/github/stars/badges/shields.svg?style=social&label=Star&style=flat-square)](https://github.com/jae-jae/Userscript-Plus)
+[![GitHub stars](https://img.shields.io/github/stars/jae-jae/Userscript-Plus.svg?style=social&label=Star&style=flat-square)](https://github.com/jae-jae/Userscript-Plus)
 
 Show current site all UserJS，The easier way to install UserJs for Tampermonkey. 
 
