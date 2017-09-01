@@ -1,6 +1,6 @@
 export default {
     table:{
-        tips: 'Found {count} user scripts for the current page',
+        tips: 'Found {count} user scripts for the page',
         install: 'Install',
         title: 'Title',
         author: 'Suthor',

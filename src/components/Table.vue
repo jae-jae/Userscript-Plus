@@ -5,7 +5,7 @@
                 <Icon :type="titleIcon"></Icon>
                 <!--<span>发现 <Badge :count="count"></Badge> 个脚本适用于当前页面</span>-->
                 <i18n path="table.tips" tag="span">
-                    <Badge place="count" :count="count"></Badge>
+                    <Badge place="count" :count="count" style="padding:0px 5px;"></Badge>
                 </i18n>
             </div>
             <div slot="extra">
