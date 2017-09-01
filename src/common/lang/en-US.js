@@ -18,6 +18,7 @@ export default {
     paypal: 'PayPal',
     closeDonate: 'Close Donate',
     feedback: 'Feedback',
-    close: 'No longer show'
+    close: 'No longer show',
+    scriptInstalling: 'Script installing...'
   }
 }

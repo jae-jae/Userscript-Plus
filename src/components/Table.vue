@@ -7,6 +7,9 @@
                 <i18n path="table.tips" tag="span">
                     <Badge place="count" :count="count" style="padding:0px 5px;"></Badge>
                 </i18n>
+                <span v-show="showBody">
+                	- Userscript+
+                </span>
             </div>
             <div slot="extra">
                 <span v-show="showBody">
@@ -191,8 +194,7 @@
                   },
                   on: {
                     click: (event) => {
-                                            // Tools.msg('脚本安装中...')
-                      this.$Message.info('脚本安装中...')
+                      this.$Message.info(this.$t('table.scriptInstalling'))
                       Tools.installUserJs(params.row.code_url)
                     }
                   }

@@ -18,6 +18,7 @@ export default {
     paypal: 'PayPal',
     closeDonate: '关闭打赏',
     feedback: '反馈',
-    close: '该网站本次会话的所有页面都不再显示'
+    close: '该网站本次会话的所有页面都不再显示',
+    scriptInstalling: '脚本安装中...'
   }
 }

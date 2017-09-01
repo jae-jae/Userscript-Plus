@@ -96,7 +96,7 @@ var inline_src = (<><![CDATA[
             this.addEventListener('min',()=>{
                 setTimeout(()=>{
                     this.setSize(370,51)
-                },800)
+                },500)
             })
 
             this.addEventListener('close',()=>{
