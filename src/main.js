@@ -6,8 +6,6 @@ import 'animate.css'
 import VueI18n from 'vue-i18n'
 import localeMessage from './common/js/locale'
 
-console.log(localeMessage)
-
 Vue.locale = (locale) => {
 
 };

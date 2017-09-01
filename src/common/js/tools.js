@@ -2,8 +2,7 @@ import timeago from 'timeago.js'
 
 export default {
     timeagoFormat(time) {
-        let lang = (navigator.language === 'zh-CN')?'zh-CN':'en-US';
-        console.log(lang)
+        let lang = (navigator.language === 'zh-CN')?'zh_CN':'en_short';
         return timeago(null, lang).format(time)
     },
     installUserJs(uri) {
