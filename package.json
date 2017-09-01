@@ -15,7 +15,7 @@
     "tampermonkey"
   ],
   "author": "Jaeger <JaegerCode@gmail.com>",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/jae-jae/Show-Site-All-UserJS/issues"
   },
