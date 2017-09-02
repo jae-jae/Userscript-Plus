@@ -37,7 +37,7 @@ Many times, we do not know whether some sites have users to provide the script t
 - Support access to the script home page and author home page
 - Click the close button, the current site `this session` all the pages will no longer appear prompt box
 - A prompt box is displayed only when found available script for the current site
-- i18n international multilingual support
+- i18n international multilingual support.(**[Locale contributions](https://github.com/jae-jae/Userscript-Plus/tree/master/src/common/lang) are welcomed!**)
 - Vue + iView UI design smooth and beautiful
 
 ## Whitelist and blacklist
