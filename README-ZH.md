@@ -35,6 +35,13 @@
 - 只有当找到了适用于当前网站的脚本的时候才会显示提示框
 - Vue+iView界面设计流畅漂亮
 
+## 白名单和黑名单
+> 脚本编辑界面 => 设置选项卡 => 包含/排除
+
+在`Tampermonkey`中进入到本脚本编辑界面，选择`设置`选项卡,这个选项卡下面有`包含/排除`选项，在这里设置白名单和黑名单,看图:
+
+![userscript+cn+hei2.gif](https://cdn.rawgit.com/jae-jae/_resources/master/img/userscript+cn+hei2.gif)
+
 ## 已知Bug
 
 1. 在某些网站下面插件界面图标不显示，如:Githuh
