@@ -22,6 +22,8 @@ Many times, we do not know whether some sites have users to provide the script t
  
   Chrome Store: [https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo]( https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)
   
+  Firefox addons:[https://addons.mozilla.org/en-US/firefox/addon/tampermonkey](https://addons.mozilla.org/en-US/firefox/addon/tampermonkey)
+  
 2. Install `Userscript+`
 
 	You can install this script via `GreasyFork` or` GitHub`::

@@ -22,6 +22,8 @@
  
   Chrome Store: [https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo]( https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)
   
+  Firefox addons:[https://addons.mozilla.org/en-US/firefox/addon/tampermonkey](https://addons.mozilla.org/en-US/firefox/addon/tampermonkey)
+  
 2. 安装`Userscript+`
 
 	你可以通过`GreasyFork`或者`GitHub`来安装此脚本:
