@@ -15,6 +15,8 @@
 
 很多时候，我们并不知道一些网站是否有用户提供用来优化页面的脚本，而**Userscript+** 就能帮你自动寻找适用的UserJS，并默认按照评分高低排序推荐给你,给你带来一种全新的`Tampermonkey`使用体验！
 
+> 旧版本,V1.x:[https://gist.github.com/jae-jae/39d526079cb2408389129caf98debc29](https://gist.github.com/jae-jae/39d526079cb2408389129caf98debc29)
+
 ## 安装
 1. 安装Chrome插件`Tampermonkey`
  
