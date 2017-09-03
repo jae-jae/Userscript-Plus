@@ -45,7 +45,7 @@
                 </Tooltip>
 
             </div>
-            <transition name="custom-classes-transition" enter-active-class="animated jello" leave-active-class="animated lightSpeedOut">
+            <transition name="custom-classes-transition" enter-active-class="animated lightSpeedIn" leave-active-class="animated bounceOutRight">
                 <div v-show="showBody">
                     <Table highlight-row :columns="columns" :data="data"></Table>
                 </div>

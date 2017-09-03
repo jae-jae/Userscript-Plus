@@ -3,7 +3,7 @@
 // @name:zh      Userscript+ : 显示当前网站所有可用的UserJS脚本 Jaeger
 // @name:zh-CN   Userscript+ : 显示当前网站所有可用的UserJS脚本 Jaeger
 // @namespace    https://github.com/jae-jae/Userscript-Plus
-// @version      2.0
+// @version      2.0.1
 // @description         Show current site all UserJS，The easier way to install UserJs for Tampermonkey.
 // @description:zh      显示当前网站的所有可用UserJS(Tampermonkey)脚本,交流QQ群:104267383
 // @description:zh-CN   显示当前网站的所有可用UserJS(Tampermonkey)脚本,交流QQ群:104267383
@@ -15,8 +15,8 @@
 // @require      https://cdn.bootcss.com/babel-core/5.6.15/browser.min.js
 // @require     https://raw.githubusercontent.com/jae-jae/l.js/master/userjs/l.userjs.min.js
 // @require     https://gist.githubusercontent.com/jae-jae/35a1833079d26e6c9d9c6d5bed982353/raw/userjs-base.js
-// @resource     ui     https://raw.githubusercontent.com/jae-jae/Show-Site-All-UserJS/master/dist/ui.html
-// @resource     uiJs   https://raw.githubusercontent.com/jae-jae/Show-Site-All-UserJS/master/dist/ui.js
+// @resource     ui     https://raw.githubusercontent.com/jae-jae/Show-Site-All-UserJS/master/dist/ui.html?_=6643682D6DEB9F3D51E77F95ACD30EAE
+// @resource     uiJs   https://raw.githubusercontent.com/jae-jae/Show-Site-All-UserJS/master/dist/ui.js?_=4365B915D7C64D9D3CBE0FFB8518229B
 // @grant        GM_xmlhttpRequest
 // @grant        GM_getResourceText
 // @grant        GM_getValue
