@@ -18,7 +18,7 @@
 > 旧版本,V1.x:[https://gist.github.com/jae-jae/39d526079cb2408389129caf98debc29](https://gist.github.com/jae-jae/39d526079cb2408389129caf98debc29)
 
 ## 安装
-1. 安装Chrome插件`Tampermonkey`
+1. 安装Chrome/Firefox插件`Tampermonkey`
  
   Chrome Store: [https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo]( https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)
   

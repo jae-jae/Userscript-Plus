@@ -18,7 +18,7 @@ Many times, we do not know whether some sites have users to provide the script t
 > [中文说明](https://github.com/jae-jae/Userscript-Plus/blob/master/README-ZH.md)
 
 ## Installation
-1. Install the Chrome plugin `Tampermonkey`
+1. Install the Chrome/Firefox plugin `Tampermonkey`
  
   Chrome Store: [https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo]( https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)
   
