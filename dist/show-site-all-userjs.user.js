@@ -16,7 +16,7 @@
 // @require     https://raw.githubusercontent.com/jae-jae/l.js/master/userjs/l.userjs.min.js
 // @require     https://gist.githubusercontent.com/jae-jae/35a1833079d26e6c9d9c6d5bed982353/raw/userjs-base.js
 // @resource     ui     https://raw.githubusercontent.com/jae-jae/Show-Site-All-UserJS/master/dist/ui.html?_=6643682D6DEB9F3D51E77F95ACD30EAE
-// @resource     uiJs   https://raw.githubusercontent.com/jae-jae/Show-Site-All-UserJS/master/dist/ui.js?_=E23D8B4B3FF697F66A010559D6E85D28
+// @resource     uiJs   https://raw.githubusercontent.com/jae-jae/Show-Site-All-UserJS/master/dist/ui.js?_=73F5B0D5151479A0055B036E66203BD8
 // @grant        GM_xmlhttpRequest
 // @grant        GM_getResourceText
 // @grant        GM_getValue
@@ -42,55 +42,7 @@ var inline_src = (<><![CDATA[
             this.showTime = 10;
             this.quietKey = 'jae_fetch_userjs_quiet';
             this.cacheKey = 'jae_fetch_userjs_cache';
-            //this.tplBox = '<div id="jae_fetch_userjs_wrapper"><style>    #jae_fetch_userjs {        position: fixed;        width: 370px;                bottom: 10px;        right: 20px;        z-index: 9999999999;        height: 56px;box-shadow: 0px 1px 4px rgba(0,0,0,0.3),\t\t\t\t0px 0px 20px rgba(0,0,0,0.1) inset;    }#jae_fetch_userjs::before,#jae_fetch_userjs::after {   content:"";   position:absolute;   z-index:-1;}#jae_fetch_userjs::before,#jae_fetch_userjs::after {   content:"";   position:absolute;   z-index:-1;   bottom:15px;   left:10px;   width:50%;   height:20%;}#jae_fetch_userjs::before,#jae_fetch_userjs::after {   content:"";   position:absolute;   z-index:-1;   bottom:15px;   left:10px;   width:50%;   height:20%;   box-shadow:0 15px 10px rgba(0, 0, 0, 0.7);   transform:rotate(-3deg);}#jae_fetch_userjs::after{   right:10px;   left:auto;   transform:rotate(3deg); }</style><div id="jae_fetch_userjs" class=""></div></div>';
-            this.tplBox = `
-           <div id="jae_userscript_box">
-    <style>
-        .jae-userscript {
-            position: fixed;
-            width: 370px;
-            bottom: 10px;
-            right: 20px;
-            z-index: 9999999999;
-            height: 56px;
-        }
-        .jae-userscript-shadow{
-			box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.3), \\t\\t\\t\\t0px 0px 20px rgba(0, 0, 0, 0.1) inset;
-        }
-          .jae-userscript-shadow::before, .jae-userscript-shadow::after {
-            content:"";
-            position:absolute;
-            z-index:-1;
-        }
-        .jae-userscript-shadow::before, .jae-userscript-shadow::after {
-            content:"";
-            position:absolute;
-            z-index:-1;
-            bottom:15px;
-            left:10px;
-            width:50%;
-            height:20%;
-        }
-        .jae-userscript-shadow::before, .jae-userscript-shadow::after {
-            content:"";
-            position:absolute;
-            z-index:-1;
-            bottom:15px;
-            left:10px;
-            width:50%;
-            height:20%;
-            box-shadow:0 15px 10px rgba(0, 0, 0, 0.7);
-            transform:rotate(-3deg);
-        }
-        .jae-userscript-shadow::after {
-            right:10px;
-            left:auto;
-            transform:rotate(3deg);
-        }
-    </style>
-    <div class="jae-userscript" class=""></div>
-</div>
-            `
+            this.tplBox = '<div id="jae_userscript_box"><style>.jae-userscript{position:fixed;width:370px;bottom:10px;right:20px;z-index:9999999999;height:56px}.jae-userscript-shadow{box-shadow:0 1px 4px rgba(0,0,0,.3),\\t\\t\\t\\t0px 0 20px rgba(0,0,0,.1) inset}.jae-userscript-shadow::before,.jae-userscript-shadow::after{content:"";position:absolute;z-index:-1}.jae-userscript-shadow::before,.jae-userscript-shadow::after{content:"";position:absolute;z-index:-1;bottom:15px;left:10px;width:50%;height:20%}.jae-userscript-shadow::before,.jae-userscript-shadow::after{content:"";position:absolute;z-index:-1;bottom:15px;left:10px;width:50%;height:20%;box-shadow:0 15px 10px rgba(0,0,0,.7);transform:rotate(-3deg)}.jae-userscript-shadow::after{right:10px;left:auto;transform:rotate(3deg)}</style><div class="jae-userscript" class=""></div></div>';
         }
 
         getJSON(url,callback){
