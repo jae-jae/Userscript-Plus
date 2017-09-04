@@ -1,17 +1,19 @@
 <template>
     <div>
-        <Card :padding="0">
-            <div slot="title" @click="bodySwitch" class="card-title">
-                <Icon :type="titleIcon"></Icon>
-                <!--<span>发现 <Badge :count="count"></Badge> 个脚本适用于当前页面</span>-->
-                <i18n path="table.tips" tag="span">
-                    <Badge place="count" :count="count" style="padding:0px 5px;"></Badge>
-                </i18n>
-                <span v-show="showBody">
+        <transition name="custom-classes-transition" enter-active-class="animated lightSpeedIn">
+            <div v-show="showTitle">
+            <Card :padding="0">
+                <div slot="title" @click="bodySwitch" class="card-title">
+                    <Icon :type="titleIcon"></Icon>
+                    <!--<span>发现 <Badge :count="count"></Badge> 个脚本适用于当前页面</span>-->
+                    <i18n path="table.tips" tag="span">
+                        <Badge place="count" :count="count" style="padding:0px 5px;"></Badge>
+                    </i18n>
+                    <span v-show="showBody">
                 	- Userscript+
                 </span>
-            </div>
-            <div slot="extra">
+                </div>
+                <div slot="extra">
                 <span v-show="showBody">
                     <Tooltip :content="$t('table.feedback')" placement="bottom">
                         <Button type="dashed" @click="open('https://greasyfork.org/zh-CN/scripts/24508/feedback')">
@@ -38,59 +40,70 @@
                     </Tooltip>
                 </span>
 
-                <Tooltip :content="$t('table.close')" placement="left">
-                    <Button type="dashed" @click="close">
-                        <Icon type="close-round"></Icon>
-                    </Button>
-                </Tooltip>
+                    <Tooltip :content="$t('table.close')" placement="left">
+                        <Button type="dashed" @click="close">
+                            <Icon type="close-round"></Icon>
+                        </Button>
+                    </Tooltip>
 
-            </div>
-            <transition name="custom-classes-transition" enter-active-class="animated lightSpeedIn" leave-active-class="animated bounceOutRight">
-                <div v-show="showBody">
-                    <Table highlight-row :columns="columns" :data="data"></Table>
                 </div>
-            </transition>
-        </Card>
-        <Modal v-model="showDonate" width="400">
-
-            <Tabs value="wechat">
-
-                <Tab-Pane :label="$t('table.wechat')" name="wechat">
-                    <div style="text-align: center;">
-                        <img width="200px" src="https://ww1.sinaimg.cn/large/7de3675bly1fizyy2pivwj2074074js6.jpg">
+                <transition name="custom-classes-transition" enter-active-class="animated lightSpeedIn" leave-active-class="animated bounceOutRight">
+                    <div v-show="showBody">
+                        <Table highlight-row :columns="columns" :data="data"></Table>
                     </div>
-                </Tab-Pane>
+                </transition>
+            </Card>
+            <Modal v-model="showDonate" width="400">
 
-                <Tab-Pane :label="$t('table.alipay')" name="alipay">
-                    <div style="text-align: center;">
-                        <img width="200px" src="https://ww1.sinaimg.cn/large/7de3675bly1fizyyh7m7yj20ci0ciwfl.jpg">
-                    </div>
-                </Tab-Pane>
+                <Tabs value="wechat">
 
-                <Tab-Pane :label="$t('table.paypal')" name="paypal">
-                    <div style="text-align: center;">
-                        <a href="https://paypal.me/jaepay/10" target="_blank">
-                            <img src="https://ww1.sinaimg.cn/large/7de3675bly1fizzsw92owj207s03s748.jpg">
-                        </a>
-                    </div>
-                </Tab-Pane>
+                    <Tab-Pane :label="$t('table.wechat')" name="wechat">
+                        <div style="text-align: center;">
+                            <img width="200px" src="https://ww1.sinaimg.cn/large/7de3675bly1fizyy2pivwj2074074js6.jpg">
+                        </div>
+                    </Tab-Pane>
 
-            </Tabs>
+                    <Tab-Pane :label="$t('table.alipay')" name="alipay">
+                        <div style="text-align: center;">
+                            <img width="200px" src="https://ww1.sinaimg.cn/large/7de3675bly1fizyyh7m7yj20ci0ciwfl.jpg">
+                        </div>
+                    </Tab-Pane>
 
-            <div slot="footer">
-                <Button type="info" size="large" long @click="showDonate=false">{{$t('table.closeDonate')}}</Button>
-            </div>
+                    <Tab-Pane :label="$t('table.paypal')" name="paypal">
+                        <div style="text-align: center;">
+                            <a href="https://paypal.me/jaepay/10" target="_blank">
+                                <img src="https://ww1.sinaimg.cn/large/7de3675bly1fizzsw92owj207s03s748.jpg">
+                            </a>
+                        </div>
+                    </Tab-Pane>
 
-        </Modal>
+                </Tabs>
+
+                <div slot="footer">
+                    <Button type="info" size="large" long @click="showDonate=false">{{$t('table.closeDonate')}}</Button>
+                </div>
+
+            </Modal>
+        </div>
+        </transition>
+
+        <div v-show="!showTitle" @mouseover='showTitle = true'>
+
+            <Indicator :count="count"></Indicator>
+
+        </div>
     </div>
+
+
 </template>
 
 <script>
 	/* global Event */
     import Tools from '../common/js/tools'
     import Info from './Info.vue'
+    import Indicator from './Indicator.vue'
     export default {
-      components: { Info },
+      components: { Info,Indicator },
       mounted: function () {
             // let host =  location.host.split('.').splice(-2).join('.');
             /* let host = 'baidu.com'
@@ -104,6 +117,7 @@
       },
       data: function () {
         return {
+            showTitle:false,
           showBody: false,
           titleIcon: 'chevron-up',
           count: 0,
@@ -229,7 +243,11 @@
           Tools.dispatchEvent('close')
         },
         bodySwitch () {
-          this.showBody = !this.showBody
+            this.showBody = !this.showBody
+            setTimeout(()=>{
+                this.showTitle = this.showBody
+            },500)
+
         },
         open (url) {
           window.open(url)

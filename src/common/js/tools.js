@@ -13,7 +13,7 @@ export default {
     link.click()
   },
   dispatchEvent (eventName) {
-    parent.document.getElementById('jae_fetch_userjs').dispatchEvent(new Event(eventName))
+    parent.document.getElementById('jae_userscript_box').dispatchEvent(new Event(eventName))
   },
     // 获取油猴缓存好的脚本数据
   getData () {

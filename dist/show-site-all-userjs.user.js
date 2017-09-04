@@ -3,7 +3,7 @@
 // @name:zh      Userscript+ : 显示当前网站所有可用的UserJS脚本 Jaeger
 // @name:zh-CN   Userscript+ : 显示当前网站所有可用的UserJS脚本 Jaeger
 // @namespace    https://github.com/jae-jae/Userscript-Plus
-// @version      2.0.2
+// @version      2.1.0
 // @description         Show current site all UserJS，The easier way to install UserJs for Tampermonkey.
 // @description:zh      显示当前网站的所有可用UserJS(Tampermonkey)脚本,交流QQ群:104267383
 // @description:zh-CN   显示当前网站的所有可用UserJS(Tampermonkey)脚本,交流QQ群:104267383
@@ -42,7 +42,55 @@ var inline_src = (<><![CDATA[
             this.showTime = 10;
             this.quietKey = 'jae_fetch_userjs_quiet';
             this.cacheKey = 'jae_fetch_userjs_cache';
-            this.tplBox = '<div id="jae_fetch_userjs_wrapper"><style>    #jae_fetch_userjs {        position: fixed;        width: 370px;                bottom: 10px;        right: 20px;        z-index: 9999999999;        height: 51px;box-shadow: 0px 1px 4px rgba(0,0,0,0.3),\t\t\t\t0px 0px 20px rgba(0,0,0,0.1) inset;    }#jae_fetch_userjs::before,#jae_fetch_userjs::after {   content:"";   position:absolute;   z-index:-1;}#jae_fetch_userjs::before,#jae_fetch_userjs::after {   content:"";   position:absolute;   z-index:-1;   bottom:15px;   left:10px;   width:50%;   height:20%;}#jae_fetch_userjs::before,#jae_fetch_userjs::after {   content:"";   position:absolute;   z-index:-1;   bottom:15px;   left:10px;   width:50%;   height:20%;   box-shadow:0 15px 10px rgba(0, 0, 0, 0.7);   transform:rotate(-3deg);}#jae_fetch_userjs::after{   right:10px;   left:auto;   transform:rotate(3deg); }</style><div id="jae_fetch_userjs" class=""></div></div>';
+            //this.tplBox = '<div id="jae_fetch_userjs_wrapper"><style>    #jae_fetch_userjs {        position: fixed;        width: 370px;                bottom: 10px;        right: 20px;        z-index: 9999999999;        height: 56px;box-shadow: 0px 1px 4px rgba(0,0,0,0.3),\t\t\t\t0px 0px 20px rgba(0,0,0,0.1) inset;    }#jae_fetch_userjs::before,#jae_fetch_userjs::after {   content:"";   position:absolute;   z-index:-1;}#jae_fetch_userjs::before,#jae_fetch_userjs::after {   content:"";   position:absolute;   z-index:-1;   bottom:15px;   left:10px;   width:50%;   height:20%;}#jae_fetch_userjs::before,#jae_fetch_userjs::after {   content:"";   position:absolute;   z-index:-1;   bottom:15px;   left:10px;   width:50%;   height:20%;   box-shadow:0 15px 10px rgba(0, 0, 0, 0.7);   transform:rotate(-3deg);}#jae_fetch_userjs::after{   right:10px;   left:auto;   transform:rotate(3deg); }</style><div id="jae_fetch_userjs" class=""></div></div>';
+            this.tplBox = `
+           <div id="jae_userscript_box">
+    <style>
+        .jae-userscript {
+            position: fixed;
+            width: 370px;
+            bottom: 10px;
+            right: 20px;
+            z-index: 9999999999;
+            height: 56px;
+        }
+        .jae-userscript-shadow{
+			box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.3), \\t\\t\\t\\t0px 0px 20px rgba(0, 0, 0, 0.1) inset;
+        }
+          .jae-userscript-shadow::before, .jae-userscript-shadow::after {
+            content:"";
+            position:absolute;
+            z-index:-1;
+        }
+        .jae-userscript-shadow::before, .jae-userscript-shadow::after {
+            content:"";
+            position:absolute;
+            z-index:-1;
+            bottom:15px;
+            left:10px;
+            width:50%;
+            height:20%;
+        }
+        .jae-userscript-shadow::before, .jae-userscript-shadow::after {
+            content:"";
+            position:absolute;
+            z-index:-1;
+            bottom:15px;
+            left:10px;
+            width:50%;
+            height:20%;
+            box-shadow:0 15px 10px rgba(0, 0, 0, 0.7);
+            transform:rotate(-3deg);
+        }
+        .jae-userscript-shadow::after {
+            right:10px;
+            left:auto;
+            transform:rotate(3deg);
+        }
+    </style>
+    <div class="jae-userscript" class=""></div>
+</div>
+            `
         }
 
         getJSON(url,callback){
@@ -76,32 +124,34 @@ var inline_src = (<><![CDATA[
         }
 
         setSize(w,h){
-            $('#jae_fetch_userjs').css({width:w,height:h})
+            $('.jae-userscript').css({width:w,height:h})
         }
 
         addEventListener(eventName,handler){
-            document.getElementById('jae_fetch_userjs').addEventListener(eventName,handler)
+            document.getElementById('jae_userscript_box').addEventListener(eventName,handler)
         }
 
         bindEvent(){
             this.timeId = setTimeout(()=>{
-                $('#jae_fetch_userjs_wrapper').remove();
+                $('#jae_userscript_box').remove();
             },this.showTime*1000);
 
             this.addEventListener('max',()=>{
                 this.setSize(860,492)
+                $('.jae-userscript').addClass('jae-userscript-shadow')
                 clearTimeout(this.timeId);
             })
 
             this.addEventListener('min',()=>{
                 setTimeout(()=>{
-                    this.setSize(370,51)
+                    $('.jae-userscript').removeClass('jae-userscript-shadow')
+                    this.setSize(370,56)
                 },500)
             })
 
             this.addEventListener('close',()=>{
                 sessionStorage.setItem(this.quietKey,1);
-                $('#jae_fetch_userjs_wrapper').remove();
+                $('#jae_userscript_box').remove();
             })
         }
 
@@ -124,7 +174,7 @@ var inline_src = (<><![CDATA[
                     $('body').append(this.tplBox);
 
                     let ui = GM_getResourceText('ui');
-                    let dom = document.getElementById('jae_fetch_userjs')
+                    let dom = document.getElementsByClassName('jae-userscript')[0]
                     var tpl = '<iframe name="jaeFetchUserJSFrame" src="about:blank" style="width:100%;height:100%;border:0px;display: block!important;" allowTransparency="true"></iframe>';
                     dom.innerHTML = tpl;
                     var iframeDom = dom.children[0];
