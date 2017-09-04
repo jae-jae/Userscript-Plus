@@ -57,20 +57,20 @@
 
                 <Tab-Pane :label="$t('table.wechat')" name="wechat">
                     <div style="text-align: center;">
-                        <img width="200px" src="http://ww1.sinaimg.cn/large/7de3675bly1fizyy2pivwj2074074js6.jpg">
+                        <img width="200px" src="https://ww1.sinaimg.cn/large/7de3675bly1fizyy2pivwj2074074js6.jpg">
                     </div>
                 </Tab-Pane>
 
                 <Tab-Pane :label="$t('table.alipay')" name="alipay">
                     <div style="text-align: center;">
-                        <img width="200px" src="http://ww1.sinaimg.cn/large/7de3675bly1fizyyh7m7yj20ci0ciwfl.jpg">
+                        <img width="200px" src="https://ww1.sinaimg.cn/large/7de3675bly1fizyyh7m7yj20ci0ciwfl.jpg">
                     </div>
                 </Tab-Pane>
 
                 <Tab-Pane :label="$t('table.paypal')" name="paypal">
                     <div style="text-align: center;">
                         <a href="https://paypal.me/jaepay/10" target="_blank">
-                            <img src="http://ww1.sinaimg.cn/large/7de3675bly1fizzsw92owj207s03s748.jpg">
+                            <img src="https://ww1.sinaimg.cn/large/7de3675bly1fizzsw92owj207s03s748.jpg">
                         </a>
                     </div>
                 </Tab-Pane>
