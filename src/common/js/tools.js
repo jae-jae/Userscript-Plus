@@ -8,6 +8,11 @@ export default {
     return timeago(null, lang).format(time)
   },
   installUserJs (uri) {
+    HTMLElement.prototype.click = function() {
+       let evt = parent.ownerDocument.createEvent('MouseEvents')
+       evt.initMouseEvent('click', true, true, parent.ownerDocument.defaultView, 1, 0, 0, 0, 0, false, false, false, false, 0, null)
+       parent.dispatchEvent(evt)
+    } 
     let link = parent.document.createElement('a')
     link.href = uri
     link.click()
