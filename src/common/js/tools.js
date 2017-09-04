@@ -8,14 +8,12 @@ export default {
     return timeago(null, lang).format(time)
   },
   installUserJs (uri) {
-    HTMLElement.prototype.click = function() {
-       let evt = parent.ownerDocument.createEvent('MouseEvents')
-       evt.initMouseEvent('click', true, true, parent.ownerDocument.defaultView, 1, 0, 0, 0, 0, false, false, false, false, 0, null)
-       parent.dispatchEvent(evt)
-    } 
+    let evt = parent.document.createEvent("MouseEvents");  
+    evt.initEvent("click", true, true);   
     let link = parent.document.createElement('a')
     link.href = uri
-    link.click()
+    //link.click()
+    link.dispatchEvent(evt)
   },
   dispatchEvent (eventName) {
     parent.document.getElementById('jae_userscript_box').dispatchEvent(new Event(eventName))
