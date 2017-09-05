@@ -136,7 +136,7 @@
           },
           {
             type: 'index',
-            width: 60,
+            width: 50,
             align: 'center'
           },
           {
@@ -180,6 +180,7 @@
           },
           {
             title: this.$t('table.dailyInstalls'),
+            width: 105,
             key: 'daily_installs',
             sortable: true
           },
@@ -193,6 +194,7 @@
           },
           {
             title: this.$t('table.action'),
+            width: 100,
             key: 'code_url',
             align: 'center',
             render: (h, params) => {
