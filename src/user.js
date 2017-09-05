@@ -38,12 +38,21 @@ var inline_src = (<><![CDATA[
     class FetchUserjs{
         constructor(){
             this.homeUrl = 'https://greasyfork.org/zh-CN/scripts/24508';
-            this.api = 'https://greasyfork.org/en/scripts/by-site/${host}.json';
+            this.api = 'https://greasyfork.org/en/scripts/by-site/{host}.json';
             this.host =  location.host.split('.').splice(-2).join('.');
             this.showTime = 10;
             this.quietKey = 'jae_fetch_userjs_quiet';
             this.cacheKey = 'jae_fetch_userjs_cache';
             this.tplBox = '<div id="jae_userscript_box"><style>.jae-userscript{position:fixed;width:370px;bottom:10px;right:20px;z-index:9999999999;height:56px}.jae-userscript-shadow{box-shadow:0 1px 4px rgba(0,0,0,.3),\\t\\t\\t\\t0px 0 20px rgba(0,0,0,.1) inset}.jae-userscript-shadow::before,.jae-userscript-shadow::after{content:"";position:absolute;z-index:-1}.jae-userscript-shadow::before,.jae-userscript-shadow::after{content:"";position:absolute;z-index:-1;bottom:15px;left:10px;width:50%;height:20%}.jae-userscript-shadow::before,.jae-userscript-shadow::after{content:"";position:absolute;z-index:-1;bottom:15px;left:10px;width:50%;height:20%;box-shadow:0 15px 10px rgba(0,0,0,.7);transform:rotate(-3deg)}.jae-userscript-shadow::after{right:10px;left:auto;transform:rotate(3deg)}</style><div class="jae-userscript" class=""></div></div>';
+        }
+
+        /* Nano Templates - https://github.com/trix/nano */
+        nano(template, data) {
+            return template.replace(/\{([\w\.]*)\}/g, function(str, key) {
+                let keys = key.split("."), v = data[keys.shift()];
+                for (let i = 0, l = keys.length; i < l; i++) v = v[keys[i]];
+                return (typeof v !== "undefined" && v !== null) ? v : "";
+            });
         }
 
         getJSON(url,callback){
@@ -66,7 +75,7 @@ var inline_src = (<><![CDATA[
                 callback(data);
 
             }else{
-                let api = juicer(this.api,{host:this.host});
+                let api = this.nano(this.api,{host:this.host});
                 this.getJSON(api,(json)=>{
                     sessionStorage.setItem(this.cacheKey,JSON.stringify(json));
                     callback(json);
@@ -142,7 +151,7 @@ var inline_src = (<><![CDATA[
 
     }
 
-    ljs.exec(['jQuery','juicer','iframe'],()=>{
+    ljs.exec(['jQuery','iframe'],()=>{
         let fu = new FetchUserjs();
         fu.render();
     });
