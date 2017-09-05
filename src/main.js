@@ -14,7 +14,8 @@ Vue.use(VueI18n)
 
 Vue.use(iView)
 
-let lang = localeMessage[navigator.language] ? navigator.language : 'en-US'
+let nlang = navigator.language.toLowerCase()
+let lang = localeMessage[nlang] ? nlang : 'en-us'
 
 const i18n = new VueI18n({
   locale: lang,
