@@ -103,7 +103,7 @@
     import Info from './Info.vue'
     import Indicator from './Indicator.vue'
     export default {
-      components: { Info,Indicator },
+      components: { Info, Indicator },
       mounted: function () {
             // let host =  location.host.split('.').splice(-2).join('.');
             /* let host = 'baidu.com'
@@ -117,7 +117,7 @@
       },
       data: function () {
         return {
-            showTitle:false,
+          showTitle: false,
           showBody: false,
           titleIcon: 'chevron-up',
           count: 0,
@@ -245,11 +245,10 @@
           Tools.dispatchEvent('close')
         },
         bodySwitch () {
-            this.showBody = !this.showBody
-            setTimeout(()=>{
-                this.showTitle = this.showBody
-            },500)
-
+          this.showBody = !this.showBody
+          setTimeout(() => {
+            this.showTitle = this.showBody
+          }, 500)
         },
         open (url) {
           window.open(url)

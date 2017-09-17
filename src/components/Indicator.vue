@@ -9,7 +9,7 @@
 
 <script>
  export default {
-    props:['count']
+   props: ['count']
  }
 </script>
 

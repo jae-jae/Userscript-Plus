@@ -8,11 +8,11 @@ export default {
     return timeago(null, lang).format(time)
   },
   installUserJs (uri) {
-    let evt = parent.document.createEvent("MouseEvents");  
-    evt.initEvent("click", true, true);   
+    let evt = parent.document.createEvent('MouseEvents')
+    evt.initEvent('click', true, true)
     let link = parent.document.createElement('a')
     link.href = uri
-    //link.click()
+    // link.click()
     link.dispatchEvent(evt)
   },
   dispatchEvent (eventName) {
