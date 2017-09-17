@@ -42,10 +42,6 @@ module.exports = {
         }),
         new CopyWebpackPlugin([
             {
-                from: './src/user.js',
-                to: 'show-site-all-userjs.user.js'
-            },
-            {
                 from: './src/ui.html',
                 to: 'ui.html'
             }
