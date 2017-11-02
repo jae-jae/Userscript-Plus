@@ -46,7 +46,7 @@ var FetchUserjs = function () {
 
         this.homeUrl = 'https://greasyfork.org/zh-CN/scripts/24508';
         this.api = 'https://greasyfork.org/en/scripts/by-site/{host}.json';
-        this.host = location.host.split('.').splice(-2).join('.');
+        this.host = location.hostname.split('.').splice(-2).join('.');
         this.showTime = 10;
         this.quietKey = 'jae_fetch_userjs_quiet';
         this.cacheKey = 'jae_fetch_userjs_cache';
