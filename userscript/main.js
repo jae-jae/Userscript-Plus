@@ -98,23 +98,25 @@ class FetchUserjs {
     }
 
     render() {
-        this.isQuiet || this.getData(this.host, (json) => {
-            if (json.length) {
+        if (!this.isQuiet) {
+            this.getData(this.host, (json) => {
+                if (json.length) {
 
-                $('body').append(this.tplBox);
+                    $('body').append(this.tplBox);
 
-                let ui = GM_getResourceText('ui');
-                let dom = document.getElementsByClassName('jae-userscript')[0]
-                var tpl = '<iframe name="jaeFetchUserJSFrame" src="about:blank" style="width:100%;height:100%;border:0px;display: block!important;" allowTransparency="true"></iframe>';
-                dom.innerHTML = tpl;
-                var iframeDom = dom.children[0];
-                iframe.write(iframeDom, ui);
+                    let ui = GM_getResourceText('ui');
+                    let dom = document.getElementsByClassName('jae-userscript')[0]
+                    var tpl = '<iframe name="jaeFetchUserJSFrame" src="about:blank" style="width:100%;height:100%;border:0px;display: block!important;" allowTransparency="true"></iframe>';
+                    dom.innerHTML = tpl;
+                    var iframeDom = dom.children[0];
+                    iframe.write(iframeDom, ui);
 
-                this.execFrameJs(jaeFetchUserJSFrame.window);
+                    this.execFrameJs(jaeFetchUserJSFrame.window);
 
-                this.bindEvent();
-            }
-        });
+                    this.bindEvent();
+                }
+            });
+        }
     }
 
 }
