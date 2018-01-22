@@ -151,23 +151,25 @@ var FetchUserjs = function () {
         value: function render() {
             var _this3 = this;
 
-            this.isQuiet || this.getData(this.host, function (json) {
-                if (json.length) {
+            if (!this.isQuiet) {
+                this.getData(this.host, function (json) {
+                    if (json.length) {
 
-                    $('body').append(_this3.tplBox);
+                        $('body').append(_this3.tplBox);
 
-                    var ui = GM_getResourceText('ui');
-                    var dom = document.getElementsByClassName('jae-userscript')[0];
-                    var tpl = '<iframe name="jaeFetchUserJSFrame" src="about:blank" style="width:100%;height:100%;border:0px;display: block!important;" allowTransparency="true"></iframe>';
-                    dom.innerHTML = tpl;
-                    var iframeDom = dom.children[0];
-                    iframe.write(iframeDom, ui);
+                        var ui = GM_getResourceText('ui');
+                        var dom = document.getElementsByClassName('jae-userscript')[0];
+                        var tpl = '<iframe name="jaeFetchUserJSFrame" src="about:blank" style="width:100%;height:100%;border:0px;display: block!important;" allowTransparency="true"></iframe>';
+                        dom.innerHTML = tpl;
+                        var iframeDom = dom.children[0];
+                        iframe.write(iframeDom, ui);
 
-                    _this3.execFrameJs(jaeFetchUserJSFrame.window);
+                        _this3.execFrameJs(jaeFetchUserJSFrame.window);
 
-                    _this3.bindEvent();
-                }
-            });
+                        _this3.bindEvent();
+                    }
+                });
+            }
         }
     }, {
         key: 'isQuiet',
