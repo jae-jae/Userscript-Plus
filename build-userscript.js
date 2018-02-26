@@ -30,8 +30,8 @@ var renderOut = function(outFile,ljs){
 var ljs = `// @require     https://raw.githubusercontent.com/jae-jae/l.js/master/userjs/l.userjs.min.js
 // @require     https://gist.githubusercontent.com/jae-jae/35a1833079d26e6c9d9c6d5bed982353/raw/userjs-base.js`;
 
-var ljs_GF = `// @require      https://greasyfork.org/scripts/23419-l-js/code/ljs.js?version=148792
-// @require      https://greasyfork.org/scripts/23420-userjs-base-js/code/userjs-basejs.js?version=214700`;
+var ljs_GF = `// @require      https://greasyfork.org/scripts/23419-l-js/code/ljs.js
+// @require      https://greasyfork.org/scripts/23420-userjs-base-js/code/userjs-basejs.js`;
 
 
 renderOut('./dist/show-site-all-userjs.user.js',ljs);
