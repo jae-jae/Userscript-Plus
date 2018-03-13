@@ -3,13 +3,16 @@ class FetchUserjs {
         this.host = window.location.hostname.split('.').splice(-2).join('.');
         this.showTime = 10;
         this.quietKey = 'jae_fetch_userjs_quiet';
+        this.countKey = 'jae_fetch_userjs_count';
         this.tplBox = '<div id="jae_userscript_box"><style>.jae-userscript{position:fixed;width:370px;bottom:10px;right:20px;z-index:9999999999;height:56px}.jae-userscript-shadow{box-shadow:0 1px 4px rgba(0,0,0,.3),\\t\\t\\t\\t0px 0 20px rgba(0,0,0,.1) inset}.jae-userscript-shadow::before,.jae-userscript-shadow::after{content:"";position:absolute;z-index:-1}.jae-userscript-shadow::before,.jae-userscript-shadow::after{content:"";position:absolute;z-index:-1;bottom:15px;left:10px;width:50%;height:20%}.jae-userscript-shadow::before,.jae-userscript-shadow::after{content:"";position:absolute;z-index:-1;bottom:15px;left:10px;width:50%;height:20%;box-shadow:0 15px 10px rgba(0,0,0,.7);transform:rotate(-3deg)}.jae-userscript-shadow::after{right:10px;left:auto;transform:rotate(3deg)}</style><div class="jae-userscript" class=""></div></div>';
     }
 
     getCountData(host) {
         let countData = GM_getResourceText('count')
         countData = JSON.parse(countData)
-        return countData[host]
+        let count =  countData[host]
+        sessionStorage.setItem(this.countKey, count)
+        return count
     }
 
     setSize(w, h) {

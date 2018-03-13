@@ -4,6 +4,7 @@ import timeago from 'timeago.js'
 
 let config = {
   cacheKey: 'jae_fetch_userjs_cache',
+  countKey: 'jae_fetch_userjs_count',
   host: window.location.hostname.split('.').splice(-2).join('.'),
   api: 'https://greasyfork.org/en/scripts/by-site/{host}.json'
 }
@@ -54,13 +55,13 @@ export default {
         host: config.host
       })
       this.getJSON(api, (json) => {
-        sessionStorage.setItem(this.cacheKey, JSON.stringify(json))
+        sessionStorage.setItem(config.cacheKey, JSON.stringify(json))
         callback(json)
       })
     }
   },
 
   getCount () {
-    return 12
+    return sessionStorage.getItem(config.countKey)
   }
 }
