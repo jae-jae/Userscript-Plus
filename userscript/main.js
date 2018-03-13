@@ -69,7 +69,6 @@ class FetchUserjs {
     render() {
         if (!this.isQuiet) {
             let count = this.getCountData(this.host)
-            console.log('count:' + count)
             if(count) {
                 $('body').append(this.tplBox);
 

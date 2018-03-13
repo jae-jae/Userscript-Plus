@@ -17,8 +17,8 @@
 // @exclude      http://www.dev/Show-Site-All-UserJS/ui.html
 // @require      https://greasyfork.org/scripts/23419-l-js/code/ljs.js
 // @require      https://greasyfork.org/scripts/23420-userjs-base-js/code/userjs-basejs.js
-// @resource     ui     https://raw.githubusercontent.com/jae-jae/Show-Site-All-UserJS/master/dist/ui.html?_=1520959205623
-// @resource     uiJs   https://raw.githubusercontent.com/jae-jae/Show-Site-All-UserJS/master/dist/ui.js?_=1520959205623
+// @resource     ui     https://raw.githubusercontent.com/jae-jae/Show-Site-All-UserJS/master/dist/ui.html?_=1520959384224
+// @resource     uiJs   https://raw.githubusercontent.com/jae-jae/Show-Site-All-UserJS/master/dist/ui.js?_=1520959384224
 // @resource     count  https://greasyfork.org/scripts/by-site.json
 // @grant        GM_xmlhttpRequest
 // @grant        GM_getResourceText
@@ -120,7 +120,6 @@ var FetchUserjs = function () {
         value: function render() {
             if (!this.isQuiet) {
                 var count = this.getCountData(this.host);
-                console.log('count:' + count);
                 if (count) {
                     $('body').append(this.tplBox);
 
