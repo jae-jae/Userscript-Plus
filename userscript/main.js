@@ -83,6 +83,11 @@ class FetchUserjs {
             sessionStorage.setItem(this.quietKey, 1);
             $('#jae_userscript_box').remove();
         })
+
+        this.addEventListener('fetchData',() => {
+            console.log('fetchData')
+            this.getData(this.host)
+        })
     }
 
     execFrameJs(frameWindow) {

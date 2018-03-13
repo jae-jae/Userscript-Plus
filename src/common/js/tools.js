@@ -18,10 +18,22 @@ export default {
   dispatchEvent (eventName) {
     parent.document.getElementById('jae_userscript_box').dispatchEvent(new Event(eventName))
   },
+  sleep (ms) {
+    return new Promise(resolve => setTimeout(resolve, ms))
+  },
     // 获取油猴缓存好的脚本数据
   getData () {
+    this.dispatchEvent('fetchData')
     let data = sessionStorage.getItem('jae_fetch_userjs_cache')
+    while(!data) {
+      data = sessionStorage.getItem('jae_fetch_userjs_cache')
+      await this.sleep(1000)
+    }
     data = JSON.parse(data)
     return data
+  },
+
+  getCount () {
+    return 12
   }
 }

@@ -106,14 +106,16 @@
       components: { Info, Indicator },
       mounted: function () {
             // let host =  location.host.split('.').splice(-2).join('.');
-            /* let host = 'baidu.com'
+            /**let host = 'baidu.com'
             fetch(`https://greasyfork.org/zh-CN/scripts/by-site/${host}.json`)
                 .then((r) => {
                     r.json().then((json) => {
                         this.data = json
                     })
-                }) */
-        this.data = Tools.getData()
+                })**/ 
+        //this.data = Tools.getData()
+        // this.data = [];
+        this.count = Tools.getCount()
       },
       data: function () {
         return {
@@ -224,9 +226,6 @@
         }
       },
       watch: {
-        data (val) {
-          this.count = val.length
-        },
         showBody (val) {
           if (val) {
                     // 最大化
@@ -244,11 +243,35 @@
         close () {
           Tools.dispatchEvent('close')
         },
+        
+        getData (callback) {
+          let host = 'baidu.com'
+          fetch(`https://greasyfork.org/zh-CN/scripts/by-site/${host}.json`)
+              .then((r) => {
+                  r.json().then((json) => {
+                      callback(json)
+                  })
+              })
+        },
+
         bodySwitch () {
-          this.showBody = !this.showBody
-          setTimeout(() => {
-            this.showTitle = this.showBody
-          }, 500)
+          if(this.data.length == 0 && this.showBody == false) {
+            this.$Spin.show();
+            Tools.getData((json)=>{
+                this.data = json
+                this.$Spin.hide();
+                this.showBody = !this.showBody
+                setTimeout(() => {
+                  this.showTitle = this.showBody
+                }, 500)
+            })
+          }else {
+            this.showBody = !this.showBody
+            setTimeout(() => {
+              this.showTitle = this.showBody
+            }, 500)
+          }
+          
         },
         open (url) {
           window.open(url)
