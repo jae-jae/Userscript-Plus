@@ -62,6 +62,7 @@ export default {
   },
 
   getCount () {
-    return sessionStorage.getItem(config.countKey)
+    let count = sessionStorage.getItem(config.countKey)
+    return count >= 50 ? 50 : count
   }
 }
