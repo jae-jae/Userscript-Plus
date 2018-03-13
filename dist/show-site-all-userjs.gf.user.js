@@ -17,13 +17,14 @@
 // @exclude      http://www.dev/Show-Site-All-UserJS/ui.html
 // @require      https://greasyfork.org/scripts/23419-l-js/code/ljs.js
 // @require      https://greasyfork.org/scripts/23420-userjs-base-js/code/userjs-basejs.js
-// @resource     ui     https://raw.githubusercontent.com/jae-jae/Show-Site-All-UserJS/master/dist/ui.html?_=1520937486364
-// @resource     uiJs   https://raw.githubusercontent.com/jae-jae/Show-Site-All-UserJS/master/dist/ui.js?_=1520937486364
+// @resource     ui     https://raw.githubusercontent.com/jae-jae/Show-Site-All-UserJS/master/dist/ui.html?_=1520957164213
+// @resource     uiJs   https://raw.githubusercontent.com/jae-jae/Show-Site-All-UserJS/master/dist/ui.js?_=1520957164213
 // @resource     count  https://greasyfork.org/scripts/by-site.json
 // @grant        GM_xmlhttpRequest
 // @grant        GM_getResourceText
 // @grant        GM_getValue
 // @grant        GM_setValue
+// @grant        unsafeWindow
 // @noframes
 // @connect     cdn.bootcss.com
 // @connect     raw.githubusercontent.com
@@ -32,6 +33,7 @@
 // @run-at      document-end
 // ==/UserScript==
 
+unsafeWindow.GmAjax = GM_xmlhttpRequest;
 
 (function() {
 
@@ -45,59 +47,17 @@ var FetchUserjs = function () {
     function FetchUserjs() {
         _classCallCheck(this, FetchUserjs);
 
-        this.homeUrl = 'https://greasyfork.org/zh-CN/scripts/24508';
-        this.api = 'https://greasyfork.org/en/scripts/by-site/{host}.json';
-        this.host = location.hostname.split('.').splice(-2).join('.');
         this.showTime = 10;
         this.quietKey = 'jae_fetch_userjs_quiet';
-        this.cacheKey = 'jae_fetch_userjs_cache';
         this.tplBox = '<div id="jae_userscript_box"><style>.jae-userscript{position:fixed;width:370px;bottom:10px;right:20px;z-index:9999999999;height:56px}.jae-userscript-shadow{box-shadow:0 1px 4px rgba(0,0,0,.3),\\t\\t\\t\\t0px 0 20px rgba(0,0,0,.1) inset}.jae-userscript-shadow::before,.jae-userscript-shadow::after{content:"";position:absolute;z-index:-1}.jae-userscript-shadow::before,.jae-userscript-shadow::after{content:"";position:absolute;z-index:-1;bottom:15px;left:10px;width:50%;height:20%}.jae-userscript-shadow::before,.jae-userscript-shadow::after{content:"";position:absolute;z-index:-1;bottom:15px;left:10px;width:50%;height:20%;box-shadow:0 15px 10px rgba(0,0,0,.7);transform:rotate(-3deg)}.jae-userscript-shadow::after{right:10px;left:auto;transform:rotate(3deg)}</style><div class="jae-userscript" class=""></div></div>';
     }
 
-    /* Nano Templates - https://github.com/trix/nano */
-
-
     _createClass(FetchUserjs, [{
-        key: 'nano',
-        value: function nano(template, data) {
-            return template.replace(/\{([\w\.]*)\}/g, function (str, key) {
-                var keys = key.split("."),
-                    v = data[keys.shift()];
-                for (var i = 0, l = keys.length; i < l; i++) {
-                    v = v[keys[i]];
-                }return typeof v !== "undefined" && v !== null ? v : "";
-            });
-        }
-    }, {
-        key: 'getJSON',
-        value: function getJSON(url, callback) {
-            GM_xmlhttpRequest({
-                method: 'GET',
-                url: url,
-                onload: function onload(res) {
-                    var json = JSON.parse(res.responseText);
-                    callback(json);
-                }
-            });
-        }
-    }, {
-        key: 'getData',
-        value: function getData(host, callback) {
-            var _this = this;
-
-            var data = sessionStorage.getItem(this.cacheKey);
-            if (data) {
-                data = JSON.parse(data);
-                callback(data);
-            } else {
-                var api = this.nano(this.api, {
-                    host: this.host
-                });
-                this.getJSON(api, function (json) {
-                    sessionStorage.setItem(_this.cacheKey, JSON.stringify(json));
-                    callback(json);
-                });
-            }
+        key: 'getCountData',
+        value: function getCountData(host) {
+            var countData = GM_getResourceText('count');
+            countData = JSON.parse(countData);
+            return countData[host];
         }
     }, {
         key: 'setSize',
@@ -115,28 +75,32 @@ var FetchUserjs = function () {
     }, {
         key: 'bindEvent',
         value: function bindEvent() {
-            var _this2 = this;
+            var _this = this;
 
             this.timeId = setTimeout(function () {
                 $('#jae_userscript_box').remove();
             }, this.showTime * 1000);
 
             this.addEventListener('max', function () {
-                _this2.setSize(860, 492);
+                _this.setSize(860, 492);
                 $('.jae-userscript').addClass('jae-userscript-shadow');
-                clearTimeout(_this2.timeId);
+                clearTimeout(_this.timeId);
             });
 
             this.addEventListener('min', function () {
                 setTimeout(function () {
                     $('.jae-userscript').removeClass('jae-userscript-shadow');
-                    _this2.setSize(370, 56);
+                    _this.setSize(370, 56);
                 }, 500);
             });
 
             this.addEventListener('close', function () {
-                sessionStorage.setItem(_this2.quietKey, 1);
+                sessionStorage.setItem(_this.quietKey, 1);
                 $('#jae_userscript_box').remove();
+            });
+
+            this.addEventListener('loading', function () {
+                clearTimeout(_this.timeId);
             });
         }
     }, {
@@ -150,26 +114,23 @@ var FetchUserjs = function () {
     }, {
         key: 'render',
         value: function render() {
-            var _this3 = this;
-
             if (!this.isQuiet) {
-                this.getData(this.host, function (json) {
-                    if (json.length) {
+                var count = this.getCountData(this.host);
+                console.log('count:' + count);
+                if (count) {
+                    $('body').append(this.tplBox);
 
-                        $('body').append(_this3.tplBox);
+                    var ui = GM_getResourceText('ui');
+                    var dom = document.getElementsByClassName('jae-userscript')[0];
+                    var tpl = '<iframe name="jaeFetchUserJSFrame" src="about:blank" style="width:100%;height:100%;border:0px;display: block!important;" allowTransparency="true"></iframe>';
+                    dom.innerHTML = tpl;
+                    var iframeDom = dom.children[0];
+                    iframe.write(iframeDom, ui);
 
-                        var ui = GM_getResourceText('ui');
-                        var dom = document.getElementsByClassName('jae-userscript')[0];
-                        var tpl = '<iframe name="jaeFetchUserJSFrame" src="about:blank" style="width:100%;height:100%;border:0px;display: block!important;" allowTransparency="true"></iframe>';
-                        dom.innerHTML = tpl;
-                        var iframeDom = dom.children[0];
-                        iframe.write(iframeDom, ui);
+                    this.execFrameJs(jaeFetchUserJSFrame.window);
 
-                        _this3.execFrameJs(jaeFetchUserJSFrame.window);
-
-                        _this3.bindEvent();
-                    }
-                });
+                    this.bindEvent();
+                }
             }
         }
     }, {

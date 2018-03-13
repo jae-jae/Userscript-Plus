@@ -106,14 +106,14 @@
       components: { Info, Indicator },
       mounted: function () {
             // let host =  location.host.split('.').splice(-2).join('.');
-            /**let host = 'baidu.com'
+            /** let host = 'baidu.com'
             fetch(`https://greasyfork.org/zh-CN/scripts/by-site/${host}.json`)
                 .then((r) => {
                     r.json().then((json) => {
                         this.data = json
                     })
-                })**/ 
-        //this.data = Tools.getData()
+                })**/
+        // this.data = Tools.getData()
         // this.data = [];
         this.count = Tools.getCount()
       },
@@ -243,35 +243,35 @@
         close () {
           Tools.dispatchEvent('close')
         },
-        
+
         getData (callback) {
           let host = 'baidu.com'
-          fetch(`https://greasyfork.org/zh-CN/scripts/by-site/${host}.json`)
+          window.fetch(`https://greasyfork.org/zh-CN/scripts/by-site/${host}.json`)
               .then((r) => {
-                  r.json().then((json) => {
-                      callback(json)
-                  })
+                r.json().then((json) => {
+                  callback(json)
+                })
               })
         },
 
         bodySwitch () {
-          if(this.data.length == 0 && this.showBody == false) {
-            this.$Spin.show();
-            Tools.getData((json)=>{
-                this.data = json
-                this.$Spin.hide();
-                this.showBody = !this.showBody
-                setTimeout(() => {
-                  this.showTitle = this.showBody
-                }, 500)
+          if (this.data.length === 0 && this.showBody === false) {
+            this.$Spin.show()
+            Tools.dispatchEvent('loading')
+            Tools.getData((json) => {
+              this.data = json
+              this.$Spin.hide()
+              this.showBody = !this.showBody
+              setTimeout(() => {
+                this.showTitle = this.showBody
+              }, 500)
             })
-          }else {
+          } else {
             this.showBody = !this.showBody
             setTimeout(() => {
               this.showTitle = this.showBody
             }, 500)
           }
-          
         },
         open (url) {
           window.open(url)

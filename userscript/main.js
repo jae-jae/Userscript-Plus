@@ -1,53 +1,14 @@
 class FetchUserjs {
     constructor() {
-        this.homeUrl = 'https://greasyfork.org/zh-CN/scripts/24508';
-        this.api = 'https://greasyfork.org/en/scripts/by-site/{host}.json';
-        this.host = location.hostname.split('.').splice(-2).join('.');
         this.showTime = 10;
         this.quietKey = 'jae_fetch_userjs_quiet';
-        this.cacheKey = 'jae_fetch_userjs_cache';
         this.tplBox = '<div id="jae_userscript_box"><style>.jae-userscript{position:fixed;width:370px;bottom:10px;right:20px;z-index:9999999999;height:56px}.jae-userscript-shadow{box-shadow:0 1px 4px rgba(0,0,0,.3),\\t\\t\\t\\t0px 0 20px rgba(0,0,0,.1) inset}.jae-userscript-shadow::before,.jae-userscript-shadow::after{content:"";position:absolute;z-index:-1}.jae-userscript-shadow::before,.jae-userscript-shadow::after{content:"";position:absolute;z-index:-1;bottom:15px;left:10px;width:50%;height:20%}.jae-userscript-shadow::before,.jae-userscript-shadow::after{content:"";position:absolute;z-index:-1;bottom:15px;left:10px;width:50%;height:20%;box-shadow:0 15px 10px rgba(0,0,0,.7);transform:rotate(-3deg)}.jae-userscript-shadow::after{right:10px;left:auto;transform:rotate(3deg)}</style><div class="jae-userscript" class=""></div></div>';
     }
 
-    /* Nano Templates - https://github.com/trix/nano */
-    nano(template, data) {
-        return template.replace(/\{([\w\.]*)\}/g, function(str, key) {
-            let keys = key.split("."),
-                v = data[keys.shift()];
-            for (let i = 0, l = keys.length; i < l; i++) v = v[keys[i]];
-            return (typeof v !== "undefined" && v !== null) ? v : "";
-        });
-    }
-
-    getJSON(url, callback) {
-        GM_xmlhttpRequest({
-            method: 'GET',
-            url: url,
-            onload: (res) => {
-                let json = JSON.parse(res.responseText);
-                callback(json);
-            }
-        });
-    }
-
-    getData(host, callback) {
-
-        let data = sessionStorage.getItem(this.cacheKey);
-        if (data) {
-            data = JSON.parse(data);
-            callback(data);
-
-        } else {
-            let api = this.nano(this.api, {
-                host: this.host
-            });
-            this.getJSON(api, (json) => {
-                sessionStorage.setItem(this.cacheKey, JSON.stringify(json));
-                callback(json);
-            });
-        }
-
-
+    getCountData(host) {
+        let countData = GM_getResourceText('count')
+        countData = JSON.parse(countData)
+        return countData[host]
     }
 
     setSize(w, h) {
@@ -84,9 +45,8 @@ class FetchUserjs {
             $('#jae_userscript_box').remove();
         })
 
-        this.addEventListener('fetchData',() => {
-            console.log('fetchData')
-            this.getData(this.host)
+        this.addEventListener('loading',() => {
+            clearTimeout(this.timeId);
         })
     }
 
@@ -104,23 +64,22 @@ class FetchUserjs {
 
     render() {
         if (!this.isQuiet) {
-            this.getData(this.host, (json) => {
-                if (json.length) {
+            let count = this.getCountData(this.host)
+            console.log('count:' + count)
+            if(count) {
+                $('body').append(this.tplBox);
 
-                    $('body').append(this.tplBox);
+                let ui = GM_getResourceText('ui');
+                let dom = document.getElementsByClassName('jae-userscript')[0]
+                var tpl = '<iframe name="jaeFetchUserJSFrame" src="about:blank" style="width:100%;height:100%;border:0px;display: block!important;" allowTransparency="true"></iframe>';
+                dom.innerHTML = tpl;
+                var iframeDom = dom.children[0];
+                iframe.write(iframeDom, ui);
 
-                    let ui = GM_getResourceText('ui');
-                    let dom = document.getElementsByClassName('jae-userscript')[0]
-                    var tpl = '<iframe name="jaeFetchUserJSFrame" src="about:blank" style="width:100%;height:100%;border:0px;display: block!important;" allowTransparency="true"></iframe>';
-                    dom.innerHTML = tpl;
-                    var iframeDom = dom.children[0];
-                    iframe.write(iframeDom, ui);
+                this.execFrameJs(jaeFetchUserJSFrame.window);
 
-                    this.execFrameJs(jaeFetchUserJSFrame.window);
-
-                    this.bindEvent();
-                }
-            });
+                this.bindEvent();
+            }
         }
     }
 

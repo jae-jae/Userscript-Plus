@@ -23,6 +23,7 @@
 // @grant        GM_getResourceText
 // @grant        GM_getValue
 // @grant        GM_setValue
+// @grant        unsafeWindow
 // @noframes
 // @connect     cdn.bootcss.com
 // @connect     raw.githubusercontent.com
@@ -31,6 +32,7 @@
 // @run-at      document-end
 // ==/UserScript==
 
+unsafeWindow.GmAjax = GM_xmlhttpRequest;
 
 (function() {
 
