@@ -99,19 +99,16 @@
     export default {
       components: { Info, Indicator },
       mounted: function () {
-
-        this.count = Tools.getCount()
-
         this.$Spin.show()
-        this.getData((json) => {
+        Tools.getData((json) => {
           this.data = json
+          this.count = this.data.length
           this.$Spin.hide()
           this.showBody = !this.showBody
           setTimeout(() => {
             this.showTitle = this.showBody
           }, 500)
         })
-
       },
       data: function () {
         return {
@@ -222,7 +219,7 @@
         }
       },
       watch: {
- 
+
       },
       methods: {
         close () {

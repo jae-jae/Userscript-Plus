@@ -3,9 +3,6 @@
 import timeago from 'timeago.js'
 
 let config = {
-  cacheKey: 'jae_fetch_userjs_cache',
-  countKey: 'jae_fetch_userjs_count',
-  host: window.location.hostname.split('.').splice(-2).join('.'),
   api: 'https://greasyfork.org/en/scripts/by-site/{host}.json'
 }
 
@@ -34,34 +31,26 @@ export default {
       return (typeof v !== 'undefined' && v !== null) ? v : ''
     })
   },
-  getJSON (url, callback) {
-    parent.window.GmAjax({
-      method: 'GET',
-      url: url,
-      onload: (res) => {
-        let json = JSON.parse(res.responseText)
-        callback(json)
-      }
-    })
-  },
     // 获取油猴缓存好的脚本数据
   getData (callback) {
-    let data = sessionStorage.getItem(config.cacheKey)
-    if (data) {
-      data = JSON.parse(data)
-      callback(data)
-    } else {
-      let api = this.nano(config.api, {
-        host: config.host
-      })
-      this.getJSON(api, (json) => {
-        sessionStorage.setItem(config.cacheKey, JSON.stringify(json))
-        callback(json)
-      })
-    }
-  },
-
-  getCount () {
-    return 12
+    chrome.storage.local.get(['host'], (rt) => {
+      let host = rt.host
+      let data = sessionStorage.getItem(host)
+      if (data) {
+        data = JSON.parse(data)
+        callback(data)
+      } else {
+        let api = this.nano(config.api, {
+          host: host
+        })
+        fetch(api)
+          .then((r) => {
+            r.json().then((json) => {
+              sessionStorage.setItem(host, JSON.stringify(json))
+              callback(json)
+            })
+          })
+      }
+    })
   }
 }
