@@ -1,0 +1,28 @@
+{
+    "manifest_version": 2,
+  
+    "name": "Userscript+",
+    "description": "Show current site all UserJS，The easier way to install UserJs for Tampermonkey.",
+    "version": "1.0",
+  
+    "browser_action": {
+      "default_icon": {
+         "16": "images/icon_16.png",
+         "32": "images/icon_32.png",
+         "96": "images/icon_96.png"
+      },
+      "default_popup": "popup.html",
+      "default_title": "Click here!"
+    },
+
+    "background": {
+      "scripts": ["background.js"],
+      "persistent": false
+    },
+
+    "permissions": [
+      "tabs",
+      "activeTab",
+      "storage"
+    ]
+  }

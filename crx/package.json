@@ -1,0 +1,50 @@
+{
+  "name": "show-site-all-userjs",
+  "version": "2.0.0",
+  "description": "Show current site all UserJS，The easier way to install UserJs for Tampermonkey.",
+  "scripts": {
+    "build": "webpack",
+    "standard": "standard --plugin html 'src/**/*.{js,vue}' --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jae-jae/Show-Site-All-UserJS.git"
+  },
+  "keywords": [
+    "userjs",
+    "tampermonkey"
+  ],
+  "author": "Jaeger <JaegerCode@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jae-jae/Show-Site-All-UserJS/issues"
+  },
+  "homepage": "https://github.com/jae-jae/Show-Site-All-UserJS#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2015": "^6.24.1",
+    "copy-webpack-plugin": "^4.0.1",
+    "css-loader": "^0.28.7",
+    "eslint-plugin-html": "^3.2.0",
+    "standard": "^10.0.3",
+    "style-loader": "^0.18.2",
+    "url-loader": "^0.5.9",
+    "vue-loader": "^13.0.4",
+    "vue-style-loader": "^3.0.1",
+    "vue-template-compiler": "^2.4.2",
+    "webpack": "^3.5.5"
+  },
+  "dependencies": {
+    "animate.css": "^3.5.2",
+    "iview": "^2.2.0",
+    "timeago.js": "^3.0.2",
+    "vue": "^2.4.2",
+    "vue-i18n": "7.2.0"
+  },
+  "standard": {
+    "ignore": [
+      "user.js"
+    ]
+  }
+}
