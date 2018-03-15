@@ -5,12 +5,19 @@
     "description": "Show current site all UserJS，The easier way to install UserJs for Tampermonkey.",
     "version": "1.0",
     "author": "Jaeger <JaegerCode@gmail.com>",
+    "icons": {
+      "16": "images/icon_16.png",
+      "32": "images/icon_32.png",
+      "96": "images/icon_96.png",
+      "128": "images/icon_128.png"
+   },
   
     "browser_action": {
       "default_icon": {
          "16": "images/icon_16.png",
          "32": "images/icon_32.png",
-         "96": "images/icon_96.png"
+         "96": "images/icon_96.png",
+         "128": "images/icon_128.png"
       },
       "default_popup": "popup.html"
     },
