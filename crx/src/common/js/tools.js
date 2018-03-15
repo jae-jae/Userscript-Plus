@@ -12,15 +12,14 @@ export default {
     return timeago(null, lang).format(time)
   },
   installUserJs (uri) {
-    let evt = parent.document.createEvent('MouseEvents')
-    evt.initEvent('click', true, true)
-    let link = parent.document.createElement('a')
-    link.href = uri
-    // link.click()
-    link.dispatchEvent(evt)
-  },
-  dispatchEvent (eventName) {
-    // parent.document.getElementById('jae_userscript_box').dispatchEvent(new Event(eventName))
+    let jsStr = `
+    var evt = document.createEvent('MouseEvents');
+    evt.initEvent('click', true, true);
+    var link = document.createElement('a');
+    link.href = '${uri}';
+    link.dispatchEvent(evt);
+    `
+    chrome.tabs.executeScript(null,{code: jsStr})
   },
   /* Nano Templates - https://github.com/trix/nano */
   nano (template, data) {
@@ -29,6 +28,23 @@ export default {
       let v = data[keys.shift()]
       for (let i = 0, l = keys.length; i < l; i++) v = v[keys[i]]
       return (typeof v !== 'undefined' && v !== null) ? v : ''
+    })
+  },
+
+  get currentTabWindow() {
+    return new Promise(function(resolve, reject){
+      let queryInfo = {
+        active: true,
+        currentWindow: true
+      };
+      
+      chrome.tabs.query(queryInfo, (tabs) => {
+        var tab = tabs[0];
+        chrome.windows.get(tab.windowId,function(win){
+          resolve(win)
+        })
+        
+      });
     })
   },
 

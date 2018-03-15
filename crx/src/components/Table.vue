@@ -212,10 +212,6 @@
 
       },
       methods: {
-        close () {
-          Tools.dispatchEvent('close')
-        },
-
         getData (callback) {
           let host = 'baidu.com'
           window.fetch(`https://greasyfork.org/zh-CN/scripts/by-site/${host}.json`)
