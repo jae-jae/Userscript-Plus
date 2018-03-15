@@ -15,7 +15,7 @@
                 <div slot="extra">
                 <span>
                     <Tooltip :content="$t('table.feedback')" placement="bottom">
-                        <Button type="dashed" @click="open('https://greasyfork.org/zh-CN/scripts/24508/feedback')">
+                        <Button type="dashed" @click="open('https://github.com/jae-jae/Userscript-Plus/issues')">
                             <Icon type="bug"></Icon>
                         </Button>
                     </Tooltip>
@@ -38,12 +38,6 @@
                         </Button>
                     </Tooltip>
                 </span>
-
-                    <Tooltip :content="$t('table.close')" placement="left">
-                        <Button type="dashed" @click="close">
-                            <Icon type="close-round"></Icon>
-                        </Button>
-                    </Tooltip>
 
                 </div>
                 <transition name="custom-classes-transition" enter-active-class="animated lightSpeedIn" leave-active-class="animated bounceOutRight">
@@ -105,14 +99,10 @@
           this.count = this.data.length
           this.$Spin.hide()
           this.showBody = !this.showBody
-          setTimeout(() => {
-            this.showTitle = this.showBody
-          }, 500)
         })
       },
       data: function () {
         return {
-          showTitle: false,
           showBody: false,
           titleIcon: 'chevron-up',
           count: 0,

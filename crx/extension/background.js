@@ -51,7 +51,7 @@ function getCurrentTabUrl(callback) {
       let host =  getUrlHostname(url).split('.').splice(-2).join('.')
       let count = data[host]
       count = count > 50 ? 50 : count
-      chrome.storage.local.set({'host':host})
+      sessionStorage.setItem('host',host)
       if(count) {
        chrome.browserAction.setBadgeText({
          text: count.toString()
@@ -66,7 +66,7 @@ function getCurrentTabUrl(callback) {
 
 fetch(countApi).then((r) => {
   r.json().then((data) => {
-      alert('data loaded')
+      console.log('count data loaded!')
       chrome.tabs.onUpdated.addListener(() => {
         changeBadge(data)
       })

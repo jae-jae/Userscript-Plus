@@ -31,11 +31,20 @@ export default {
       return (typeof v !== 'undefined' && v !== null) ? v : ''
     })
   },
+
+  get sessionStorage () {
+    return new Promise(function(resolve, reject){
+      chrome.runtime.getBackgroundPage(function (bg) {
+        resolve(bg.sessionStorage)
+      })
+    })
+  },
+
     // 获取油猴缓存好的脚本数据
   getData (callback) {
-    chrome.storage.local.get(['host'], (rt) => {
-      let host = rt.host
-      let data = sessionStorage.getItem(host)
+    this.sessionStorage.then((bgSessionStorage) => {
+      let host = bgSessionStorage.getItem('host')
+      let data = bgSessionStorage.getItem(host)
       if (data) {
         data = JSON.parse(data)
         callback(data)
@@ -46,11 +55,12 @@ export default {
         fetch(api)
           .then((r) => {
             r.json().then((json) => {
-              sessionStorage.setItem(host, JSON.stringify(json))
+              bgSessionStorage.setItem(host, JSON.stringify(json))
               callback(json)
             })
           })
       }
     })
+   
   }
 }
