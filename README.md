@@ -30,6 +30,12 @@ Many times, we do not know whether some sites have users to provide the script t
     - GreasyFork: [https://greasyfork.org/zh-CN/scripts/24508](https://greasyfork.org/zh-CN/scripts/24508-userscript-show-site-all-userjs)
     - GitHub: [https://github.com/jae-jae/Userscript-Plus/raw/master/dist/show-site-all-userjs.user.js](https://github.com/jae-jae/Userscript-Plus/raw/master/dist/show-site-all-userjs.user.js)
 
+### Userscript+ Chrome extension
+![](http://ww1.sinaimg.cn/large/7de3675bgy1fpejqorcprj20zk0m8498.jpg)
+- Chrome webstore:[https://chrome.google.com/webstore/detail/okiocdganiomklllkfkmhneoibegifch](https://chrome.google.com/webstore/detail/okiocdganiomklllkfkmhneoibegifch)
+
+- Github: [https://github.com/jae-jae/Userscript-Plus/raw/master/crx/extension.crx](https://github.com/jae-jae/Userscript-Plus/raw/master/crx/extension.crx)
+
 ## Features
 -  Automatically appear in the lower right corner, recommend scripts for you, and will automatically disappear after 10 seconds
 -  Filter the top 50 script with the highest score

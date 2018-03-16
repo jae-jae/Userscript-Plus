@@ -21,6 +21,12 @@
                         </Button>
                     </Tooltip>
 
+                    <Tooltip content="Chrome" placement="bottom">
+                        <Button type="dashed" @click="open('https://chrome.google.com/webstore/detail/okiocdganiomklllkfkmhneoibegifch')">
+                             <Icon type="social-chrome"></Icon>
+                        </Button>
+                    </Tooltip>
+
                     <Tooltip content="GreasyFork" placement="bottom">
                         <Button type="dashed" @click="open('https://greasyfork.org/zh-CN/scripts/24508')">
                             <Icon type="fork"></Icon>
