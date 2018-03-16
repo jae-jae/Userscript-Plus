@@ -31,7 +31,7 @@
     - GitHub: [https://github.com/jae-jae/Userscript-Plus/raw/master/dist/show-site-all-userjs.user.js](https://github.com/jae-jae/Userscript-Plus/raw/master/dist/show-site-all-userjs.user.js)
 
 ### Userscript+ Chrome插件
-![](http://ww1.sinaimg.cn/large/7de3675bgy1fpejqorcprj20zk0m8498.jpg)
+![](https://raw.githubusercontent.com/jae-jae/_resources/master/img/175033.png)
 独立的Chrome插件版本，更加方便好用:
 - Chrome webstore:[https://chrome.google.com/webstore/detail/okiocdganiomklllkfkmhneoibegifch](https://chrome.google.com/webstore/detail/okiocdganiomklllkfkmhneoibegifch)
 

@@ -31,7 +31,7 @@ Many times, we do not know whether some sites have users to provide the script t
     - GitHub: [https://github.com/jae-jae/Userscript-Plus/raw/master/dist/show-site-all-userjs.user.js](https://github.com/jae-jae/Userscript-Plus/raw/master/dist/show-site-all-userjs.user.js)
 
 ### Userscript+ Chrome extension
-![](http://ww1.sinaimg.cn/large/7de3675bgy1fpejqorcprj20zk0m8498.jpg)
+![](https://raw.githubusercontent.com/jae-jae/_resources/master/img/175033.png)
 - Chrome webstore:[https://chrome.google.com/webstore/detail/okiocdganiomklllkfkmhneoibegifch](https://chrome.google.com/webstore/detail/okiocdganiomklllkfkmhneoibegifch)
 
 - Github: [https://github.com/jae-jae/Userscript-Plus/raw/master/crx/extension.crx](https://github.com/jae-jae/Userscript-Plus/raw/master/crx/extension.crx)
