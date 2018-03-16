@@ -40,15 +40,15 @@ function getCurrentTabUrl(callback) {
     // alert(url); // Shows "undefined", because chrome.tabs.query is async.
   }
 
-  function getUrlHostname(url) {
+  function getUrlHost(url) {
     var a = document.createElement('a');
     a.href = url;
-    return a.hostname
+    return a.hostname.split('.').splice(-2).join('.')
   }
 
   function changeBadge(data) {
     getCurrentTabUrl(function(url){
-      let host =  getUrlHostname(url).split('.').splice(-2).join('.')
+      let host =  getUrlHost(url)
       let count = data[host]
       count = count > 50 ? 50 : count
       sessionStorage.setItem('host',host)

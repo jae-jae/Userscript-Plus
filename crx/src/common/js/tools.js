@@ -31,19 +31,16 @@ export default {
     })
   },
 
-  get currentTabWindow() {
+  get currentTab() {
     return new Promise(function(resolve, reject){
       let queryInfo = {
         active: true,
         currentWindow: true
-      };
+      }
       
       chrome.tabs.query(queryInfo, (tabs) => {
-        var tab = tabs[0];
-        chrome.windows.get(tab.windowId,function(win){
-          resolve(win)
-        })
-        
+        let tab = tabs[0]
+        resolve(tab)
       });
     })
   },
@@ -56,26 +53,39 @@ export default {
     })
   },
 
+  get host() {
+    return new Promise((resolve, reject) => {
+      this.currentTab.then((tab) => {
+        let a = document.createElement('a');
+        a.href = tab.url;
+        resolve(a.hostname.split('.').splice(-2).join('.'))
+      })
+      
+    })
+  },
+
     // 获取油猴缓存好的脚本数据
   getData (callback) {
     this.sessionStorage.then((bgSessionStorage) => {
-      let host = bgSessionStorage.getItem('host')
-      let data = bgSessionStorage.getItem(host)
-      if (data) {
-        data = JSON.parse(data)
-        callback(data)
-      } else {
-        let api = this.nano(config.api, {
-          host: host
-        })
-        fetch(api)
-          .then((r) => {
-            r.json().then((json) => {
-              bgSessionStorage.setItem(host, JSON.stringify(json))
-              callback(json)
-            })
+      this.host.then((host) => {
+        let data = bgSessionStorage.getItem(host)
+        if (data) {
+          data = JSON.parse(data)
+          callback(data)
+        } else {
+          let api = this.nano(config.api, {
+            host: host
           })
-      }
+          fetch(api)
+            .then((r) => {
+              r.json().then((json) => {
+                bgSessionStorage.setItem(host, JSON.stringify(json))
+                callback(json)
+              })
+            })
+        }
+
+      })
     })
    
   }
