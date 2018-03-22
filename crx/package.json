@@ -4,6 +4,7 @@
   "description": "Show current site all UserJS，The easier way to install UserJs for Tampermonkey.",
   "scripts": {
     "build": "webpack",
+    "watch": "webpack --watch",
     "standard": "standard --plugin html 'src/**/*.{js,vue}' --fix"
   },
   "repository": {

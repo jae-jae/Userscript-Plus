@@ -5,15 +5,22 @@
             <Card :padding="0">
                 <div slot="title" class="card-title">
                     <!--<span>发现 <Badge :count="count"></Badge> 个脚本适用于当前页面</span>-->
-                    <i18n path="table.tips" tag="span">
-                        <Badge place="count" :count="count" style="padding:0px 5px;"></Badge>
-                    </i18n>
-                    <span>
-                	- Userscript+
-                </span>
+                    <span v-if="!showSearchInput">
+                      <i18n path="table.tips" tag="span">
+                          <Badge place="count" :count="count" style="padding:0px 5px;"></Badge>
+                      </i18n>
+                      - Userscript+
+                    </span>
+                    <Input v-else v-model="searchInput"  icon="android-search" placeholder="Enter something..." style="width: 450px"></Input>
                 </div>
                 <div slot="extra">
                 <span>
+                  <Tooltip content="Search" placement="bottom">
+                        <Button type="dashed" @click="showSearchInput = !showSearchInput">
+                            <Icon type="android-search"></Icon>
+                        </Button>
+                    </Tooltip>
+
                     <Tooltip :content="$t('table.feedback')" placement="bottom">
                         <Button type="dashed" @click="open('https://github.com/jae-jae/Userscript-Plus/issues')">
                             <Icon type="bug"></Icon>
@@ -102,6 +109,7 @@
         this.$Spin.show()
         Tools.getData((json) => {
           this.data = json
+          this.originData = json
           this.count = this.data.length
           this.$Spin.hide()
           this.showBody = !this.showBody
@@ -109,6 +117,8 @@
       },
       data: function () {
         return {
+          showSearchInput: false,
+          searchInput:  '',
           showBody: false,
           titleIcon: 'chevron-up',
           count: 0,
@@ -211,11 +221,31 @@
           }
           ],
                 // 表格数据
+          originData: [],
           data: []
         }
       },
       watch: {
-
+        searchInput: function (val) {
+          if (val) {
+            val = val.toLowerCase()
+            console.log(val)
+            this.data = this.originData.filter(function(item) {
+              return ['name','description','user'].some(function(key) {
+                let str = ''
+                if (key === 'user') {
+                  str = String(item['user']['name'])
+                } else {
+                  str = String(item[key])
+                }
+                return str.toLowerCase().indexOf(val) > -1
+              })
+            })
+            console.log(this.data)
+          } else {
+            this.data = this.originData
+          }
+        }
       },
       methods: {
         getData (callback) {
