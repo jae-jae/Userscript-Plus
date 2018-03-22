@@ -1,6 +1,7 @@
 /* global parent, Event, sessionStorage */
 
 import timeago from 'timeago.js'
+import fuzzy from 'fuzzy'
 
 let config = {
   api: 'https://greasyfork.org/en/scripts/by-site/{host}.json'
@@ -88,5 +89,16 @@ export default {
       })
     })
    
+  },
+
+  searcher (data,query) {
+    let rt = []
+    for(i =0 ; i < data.length; i++) {
+      let item = data[i]
+      let max = null
+      for(j in ['name','description','user']) {
+        
+      }
+    }
   }
 }
