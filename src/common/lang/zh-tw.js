@@ -19,6 +19,7 @@ export default {
     closeDonate: '關閉打賞',
     feedback: '反饋',
     close: '該網站本次會話的所有頁面都不再顯示',
-    scriptInstalling: '腳本安裝中...'
+    scriptInstalling: '腳本安裝中...',
+    search: '搜索'
   }
 }

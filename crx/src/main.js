@@ -4,7 +4,7 @@ import iView from 'iview'
 import 'iview/dist/styles/iview.css'    // 使用 CSS
 import 'animate.css'
 import VueI18n from 'vue-i18n'
-import localeMessage from './common/js/locale'
+import localeMessage from '../../src/common/js/locale'
 
 Vue.locale = (locale) => {
 

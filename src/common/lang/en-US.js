@@ -19,6 +19,7 @@ export default {
     closeDonate: 'Close Donate',
     feedback: 'Feedback',
     close: 'No longer show',
-    scriptInstalling: 'Script installing...'
+    scriptInstalling: 'Script installing...',
+    search: 'Search'
   }
 }
