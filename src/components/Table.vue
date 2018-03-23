@@ -3,18 +3,27 @@
         <transition name="custom-classes-transition" enter-active-class="animated lightSpeedIn">
             <div v-show="showTitle">
             <Card :padding="0">
-                <div slot="title" @click="bodySwitch" class="card-title">
+                <div slot="title" class="card-title">
                     <Icon :type="titleIcon"></Icon>
                     <!--<span>发现 <Badge :count="count"></Badge> 个脚本适用于当前页面</span>-->
-                    <i18n path="table.tips" tag="span">
-                        <Badge place="count" :count="count" style="padding:0px 5px;"></Badge>
-                    </i18n>
-                    <span v-show="showBody">
-                	- Userscript+
-                </span>
+                    <span v-if="!showSearchInput" @click="bodySwitch">
+                      <i18n path="table.tips" tag="span">
+                          <Badge place="count" :count="count" style="padding:0px 5px;"></Badge>
+                      </i18n>
+                      <span v-show="showBody">
+                        - Userscript+
+                      </span>
+                    </span>
+                    <Input v-else v-model="searchInput"  icon="android-search" placeholder="Enter title、description、author..." style="width: 450px;height: 25px;"></Input>                    
                 </div>
                 <div slot="extra">
                 <span v-show="showBody">
+                  <Tooltip :content="$t('table.search')" placement="bottom">
+                        <Button type="dashed" @click="showSearchInput = !showSearchInput">
+                            <Icon type="android-search"></Icon>
+                        </Button>
+                    </Tooltip>
+
                     <Tooltip :content="$t('table.feedback')" placement="bottom">
                         <Button type="dashed" @click="open('https://greasyfork.org/zh-CN/scripts/24508/feedback')">
                             <Icon type="bug"></Icon>
@@ -125,6 +134,8 @@
       },
       data: function () {
         return {
+          showSearchInput: false,
+          searchInput:  '',
           showTitle: false,
           showBody: false,
           titleIcon: 'chevron-up',
@@ -228,6 +239,7 @@
           }
           ],
                 // 表格数据
+          originData: [],
           data: []
         }
       },
@@ -243,6 +255,14 @@
             Tools.dispatchEvent('min')
           }
           window.dispatchEvent(new Event('resize'))
+        },
+        searchInput: function (val) {
+          if (val) {
+            val = val.toLowerCase()
+            this.data = Tools.searcher(this.originData,val)
+          } else {
+            this.data = this.originData
+          }
         }
       },
       methods: {
@@ -265,6 +285,7 @@
             this.$Spin.show()
             Tools.dispatchEvent('loading')
             Tools.getData((json) => {
+              this.originData = json
               this.data = json
               this.$Spin.hide()
               this.showBody = !this.showBody

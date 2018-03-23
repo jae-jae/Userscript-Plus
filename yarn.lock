@@ -2015,6 +2015,10 @@ function-bind@^1.0.2, function-bind@^1.1.1:
   version "1.1.1"
   resolved "http://registry.npm.taobao.org/function-bind/download/function-bind-1.1.1.tgz#a56899d3ea3c9bab874bb9773b7c5ede92f4895d"
 
+fuzzy.js@^0.1.0:
+  version "0.1.0"
+  resolved "http://registry.npm.taobao.org/fuzzy.js/download/fuzzy.js-0.1.0.tgz#c147ff5f5a8d0c7a5340b79bdbb01607deb6ff73"
+
 gauge@~2.7.3:
   version "2.7.4"
   resolved "http://registry.npm.taobao.org/gauge/download/gauge-2.7.4.tgz#2c03405c7538c39d7eb37b317022e325fb018bf7"

@@ -1,6 +1,7 @@
 /* global parent, Event, sessionStorage */
 
 import timeago from 'timeago.js'
+import fuzzy from 'fuzzy.js'
 
 let config = {
   cacheKey: 'jae_fetch_userjs_cache',
@@ -64,5 +65,32 @@ export default {
   getCount () {
     let count = sessionStorage.getItem(config.countKey)
     return count >= 50 ? 50 : count
+  },
+
+  searcher (data,query) {
+    let rt = []
+    for(let i =0 ; i < data.length; i++) {
+      let item = data[i]
+      let max = null
+      let frt = null
+      for(let key of ['name','description','user']) {
+        if (key === 'user') {
+          frt = fuzzy(item['user']['name'],query)
+        } else {
+          frt = fuzzy(item[key],query)
+        }
+        if (max === null) {
+          max = frt
+        } else if (max.score < frt.score) {
+          max = frt
+        }
+      }
+      rt.push({
+        item,
+        'score': max.score
+      })
+    }
+    rt = rt.filter((a) => a.score !== 0).sort((a, b) => b.score - a.score).map((a) => a.item)
+    return rt
   }
 }
