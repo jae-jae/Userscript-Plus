@@ -39,6 +39,7 @@ Many times, we do not know whether some sites have users to provide the script t
 ## Features
 -  Automatically appear in the lower right corner, recommend scripts for you, and will automatically disappear after 10 seconds
 -  Filter the top 50 script with the highest score
+-  The script list supports search filtering
 -  The script list supports custom sorting
 -  Supports one-click installation script
 - Support for viewing script details
