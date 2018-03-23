@@ -11,11 +11,11 @@
                       </i18n>
                       - Userscript+
                     </span>
-                    <Input v-else v-model="searchInput"  icon="android-search" placeholder="Enter something..." style="width: 450px"></Input>
+                    <Input v-else v-model="searchInput"  icon="android-search" placeholder="Enter title、description、author..." style="width: 450px"></Input>
                 </div>
                 <div slot="extra">
                 <span>
-                  <Tooltip content="Search" placement="bottom">
+                  <Tooltip :content="$t('table.search')" placement="bottom">
                         <Button type="dashed" @click="showSearchInput = !showSearchInput">
                             <Icon type="android-search"></Icon>
                         </Button>
@@ -102,9 +102,8 @@
 	/* global Event */
     import Tools from '../common/js/tools'
     import Info from './Info.vue'
-    import Indicator from './Indicator.vue'
     export default {
-      components: { Info, Indicator },
+      components: { Info },
       mounted: function () {
         this.$Spin.show()
         Tools.getData((json) => {
@@ -229,19 +228,20 @@
         searchInput: function (val) {
           if (val) {
             val = val.toLowerCase()
-            console.log(val)
-            this.data = this.originData.filter(function(item) {
-              return ['name','description','user'].some(function(key) {
-                let str = ''
-                if (key === 'user') {
-                  str = String(item['user']['name'])
-                } else {
-                  str = String(item[key])
-                }
-                return str.toLowerCase().indexOf(val) > -1
-              })
-            })
-            console.log(this.data)
+            // console.log(val)
+            // this.data = this.originData.filter(function(item) {
+            //   return ['name','description','user'].some(function(key) {
+            //     let str = ''
+            //     if (key === 'user') {
+            //       str = String(item['user']['name'])
+            //     } else {
+            //       str = String(item[key])
+            //     }
+            //     return str.toLowerCase().indexOf(val) > -1
+            //   })
+            // })
+            this.data = Tools.searcher(this.originData,val)
+            // console.log(this.data)
           } else {
             this.data = this.originData
           }
