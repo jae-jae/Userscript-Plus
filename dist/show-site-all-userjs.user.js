@@ -5,7 +5,7 @@
 // @name:zh-TW   Userscript+ : 顯示當前網站所有可用的UserJS腳本 Jaeger
 // @name:ja   Userscript +：現在のサイトの利用可能なすべてのUserJSスクリプトを表示するJaeger
 // @namespace    https://github.com/jae-jae/Userscript-Plus
-// @version      2.3.0
+// @version      2.3.1
 // @description         Show current site all UserJS，The easier way to install UserJs for Tampermonkey.
 // @description:zh      显示当前网站的所有可用UserJS(Tampermonkey)脚本,交流QQ群:104267383
 // @description:zh-CN   显示当前网站的所有可用UserJS(Tampermonkey)脚本,交流QQ群:104267383
@@ -17,8 +17,8 @@
 // @exclude      http://www.dev/Show-Site-All-UserJS/ui.html
 // @require     https://raw.githubusercontent.com/jae-jae/l.js/master/userjs/l.userjs.min.js
 // @require     https://gist.githubusercontent.com/jae-jae/35a1833079d26e6c9d9c6d5bed982353/raw/userjs-base.js
-// @resource     ui     https://raw.githubusercontent.com/jae-jae/Show-Site-All-UserJS/master/dist/ui.html?_=1521784041818
-// @resource     uiJs   https://raw.githubusercontent.com/jae-jae/Show-Site-All-UserJS/master/dist/ui.js?_=1521784041818
+// @resource     ui     https://raw.githubusercontent.com/jae-jae/Show-Site-All-UserJS/master/dist/ui.html?_=1526482573707
+// @resource     uiJs   https://raw.githubusercontent.com/jae-jae/Show-Site-All-UserJS/master/dist/ui.js?_=1526482573707
 // @resource     count  https://greasyfork.org/scripts/by-site.json
 // @grant        GM_xmlhttpRequest
 // @grant        GM_getResourceText
