@@ -3,7 +3,7 @@ export default {
     tips: 'Found {count} user scripts for the page',
     install: 'Install',
     title: 'Title',
-    author: 'Suthor',
+    author: 'Author',
     authorTips: 'Click to access the {name} home page',
     dailyInstalls: 'Daily',
     updatedTime: 'Updated',
