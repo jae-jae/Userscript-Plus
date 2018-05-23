@@ -30,11 +30,13 @@ Many times, we do not know whether some sites have users to provide the script t
     - GreasyFork: [https://greasyfork.org/zh-CN/scripts/24508](https://greasyfork.org/zh-CN/scripts/24508-userscript-show-site-all-userjs)
     - GitHub: [https://github.com/jae-jae/Userscript-Plus/raw/master/dist/show-site-all-userjs.user.js](https://github.com/jae-jae/Userscript-Plus/raw/master/dist/show-site-all-userjs.user.js)
 
-### Userscript+ Chrome extension
+### Userscript+ Chrome/Firefox extension
 ![](https://raw.githubusercontent.com/jae-jae/_resources/master/img/175033.png)
 - Chrome webstore:[https://chrome.google.com/webstore/detail/okiocdganiomklllkfkmhneoibegifch](https://chrome.google.com/webstore/detail/okiocdganiomklllkfkmhneoibegifch)
 
 - Github: [https://github.com/jae-jae/Userscript-Plus/raw/master/crx/extension.crx](https://github.com/jae-jae/Userscript-Plus/raw/master/crx/extension.crx)
+
+- Firefox Add-ons: [https://addons.mozilla.org/en-US/firefox/addon/userscript-for-tampermonkey](https://addons.mozilla.org/en-US/firefox/addon/userscript-for-tampermonkey)
 
 ## Features
 -  Automatically appear in the lower right corner, recommend scripts for you, and will automatically disappear after 10 seconds

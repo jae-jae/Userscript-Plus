@@ -30,12 +30,14 @@
     - GreasyFork: [https://greasyfork.org/zh-CN/scripts/24508](https://greasyfork.org/zh-CN/scripts/24508-userscript-show-site-all-userjs)
     - GitHub: [https://github.com/jae-jae/Userscript-Plus/raw/master/dist/show-site-all-userjs.user.js](https://github.com/jae-jae/Userscript-Plus/raw/master/dist/show-site-all-userjs.user.js)
 
-### Userscript+ Chrome插件
+### Userscript+ Chrome/Firefox插件
 ![](https://raw.githubusercontent.com/jae-jae/_resources/master/img/175033.png)
-独立的Chrome插件版本，更加方便好用:
+独立的Chrome/Firefox插件版本，更加方便好用:
 - Chrome webstore:[https://chrome.google.com/webstore/detail/okiocdganiomklllkfkmhneoibegifch](https://chrome.google.com/webstore/detail/okiocdganiomklllkfkmhneoibegifch)
 
 - Github: [https://github.com/jae-jae/Userscript-Plus/raw/master/crx/extension.crx](https://github.com/jae-jae/Userscript-Plus/raw/master/crx/extension.crx)
+
+- Firefox Add-ons: [https://addons.mozilla.org/zh-CN/firefox/addon/userscript-for-tampermonkey](https://addons.mozilla.org/zh-CN/firefox/addon/userscript-for-tampermonkey)
 
 ## 特性
 -  自动在右下角静默为你推荐脚本，并会在10秒后自动消失
