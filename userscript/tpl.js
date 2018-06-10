@@ -4,7 +4,7 @@
 // @name:zh-CN   Userscript+ : 显示当前网站所有可用的UserJS脚本 Jaeger
 // @name:zh-TW   Userscript+ : 顯示當前網站所有可用的UserJS腳本 Jaeger
 // @name:ja   Userscript +：現在のサイトの利用可能なすべてのUserJSスクリプトを表示するJaeger
-// @name:zh-TW   Userscript+ : Показать пользовательские скрипты (UserJS) для сайта. Jaeger
+// @name:ru-RU   Userscript+ : Показать пользовательские скрипты (UserJS) для сайта. Jaeger
 // @namespace    https://github.com/jae-jae/Userscript-Plus
 // @version      2.3.1
 // @description         Show current site all UserJS，The easier way to install UserJs for Tampermonkey.
