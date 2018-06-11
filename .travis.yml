@@ -6,16 +6,23 @@ before_script:
   - yarn
   - cd ..
   - yarn
+
 script:
   - yarn build
   - cd crx
   - yarn build
+
 after_success:
   - git commit -a -m "Travis build"
-  - git push origin master
+  - git push "https://${GH_TOKEN}@${GH_REF}" master:master
+
 cache:
   yarn: true
   webpack: true
   directories:
     - "node_modules"
     - "crx/node_modules"
+
+env:
+ global:
+   - GH_REF: github.com/jae-jae/Userscript-Plus.git
