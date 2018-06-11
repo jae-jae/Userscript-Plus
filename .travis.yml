@@ -11,8 +11,8 @@ script:
   - cd crx
   - yarn build
 cache:
+  yarn: true
+  webpack: true
   directories:
     - "node_modules"
     - "crx/node_modules"
-  - yarn: true
-  - webpack: true
