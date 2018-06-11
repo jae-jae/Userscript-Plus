@@ -16,6 +16,7 @@
 Many times, we do not know whether some sites have users to provide the script to optimize the page, but **Userscript+** will be able to help you automatically find the applicable UserJS, and by default, according to the score from high to low order recommended to you, bring you a new `Tampermonkey` use experience!
 
 > [中文说明](https://github.com/jae-jae/Userscript-Plus/blob/master/README-ZH.md)
+> [Описание на русском](https://github.com/jae-jae/Userscript-Plus/blob/master/README-RU.md)
 
 ## Installation
 1. Install the Chrome/Firefox plugin `Tampermonkey`
@@ -27,7 +28,7 @@ Many times, we do not know whether some sites have users to provide the script t
 2. Install `Userscript+`
 
 	You can install this script via `GreasyFork` or` GitHub`::
-    - GreasyFork: [https://greasyfork.org/zh-CN/scripts/24508](https://greasyfork.org/zh-CN/scripts/24508-userscript-show-site-all-userjs)
+    - GreasyFork: [https://greasyfork.org/en/scripts/24508](https://greasyfork.org/en/scripts/24508-userscript-show-site-all-userjs)
     - GitHub: [https://github.com/jae-jae/Userscript-Plus/raw/master/dist/show-site-all-userjs.user.js](https://github.com/jae-jae/Userscript-Plus/raw/master/dist/show-site-all-userjs.user.js)
 
 ### Userscript+ Chrome/Firefox extension
@@ -44,12 +45,12 @@ Many times, we do not know whether some sites have users to provide the script t
 -  The script list supports search filtering
 -  The script list supports custom sorting
 -  Supports one-click installation script
-- Support for viewing script details
-- Support access to the script home page and author home page
-- Click the close button, the current site `this session` all the pages will no longer appear prompt box
-- A prompt box is displayed only when found available script for the current site
-- i18n international multilingual support.(**[Locale contributions](https://github.com/jae-jae/Userscript-Plus/tree/master/src/common/lang) are welcomed!**)
-- Vue + iView UI design smooth and beautiful
+-  Support for viewing script details
+-  Support access to the script home page and author home page
+-  Click the close button, the current site `this session` all the pages will no longer appear prompt box
+-  A prompt box is displayed only when found available script for the current site
+-  i18n international multilingual support.(**[Locale contributions](https://github.com/jae-jae/Userscript-Plus/tree/master/src/common/lang) are welcomed!**)
+-  Vue + iView UI design smooth and beautiful
 
 ## Whitelist and blacklist
 > Edit script => Settings tab => Includes/Excludes
