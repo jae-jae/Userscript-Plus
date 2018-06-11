@@ -10,6 +10,9 @@ script:
   - yarn build
   - cd crx
   - yarn build
+after_success:
+  - git commit -a -m "Travis build"
+  - git push origin master
 cache:
   yarn: true
   webpack: true
