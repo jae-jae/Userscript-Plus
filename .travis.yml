@@ -1,0 +1,15 @@
+language: node_js
+node_js: 9
+before_script:
+  - npm install yarn webpack -g
+  - yarn
+  - cd crx
+  - yarn
+script:
+  - yarn build
+  - cd crx
+  - yarn build
+cache:
+  directories:
+    - "node_modules"
+    - "crx/node_modules"
