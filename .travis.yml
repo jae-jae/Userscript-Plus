@@ -11,9 +11,12 @@ script:
   - yarn build
   - cd crx
   - yarn build
+  - cd ..
 
 after_success:
+  - pwd
   - git commit -a -m "Travis build"
+  - git status
   - git push "https://${GH_TOKEN}@${GH_REF}" master:master
 
 cache:
