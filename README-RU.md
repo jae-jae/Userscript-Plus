@@ -24,7 +24,7 @@
  
   Интернет-магазин Chrome: [https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo]( https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)
   
-  Дополнения Firefox:[https://addons.mozilla.org/ru/firefox/addon/tampermonkey](https://addons.mozilla.org/ru/firefox/addon/tampermonkey)
+  Дополнения Firefox: [https://addons.mozilla.org/ru/firefox/addon/tampermonkey](https://addons.mozilla.org/ru/firefox/addon/tampermonkey)
   
 2. Установите `Userscript+`
 
@@ -68,7 +68,7 @@
     
 ## Содействие
 
-Если вы желаете содействовать проекту публикацией кода, пожалуйста прочитайте следующую [спецификацию стандарта](https://standardjs.com/).
+Если вы желаете содействовать развитию проекта кодом, пожалуйста, прочитайте следующую [спецификацию стандарта](https://standardjs.com/).
 
 ## Лицензия
 MIT
