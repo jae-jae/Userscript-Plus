@@ -16,6 +16,7 @@ script:
 after_success:
   - pwd
   - git commit -a -m "Travis build"
+  - git checkout master
   - git status
   - git push "https://${GH_TOKEN}@${GH_REF}" master:master
 
