@@ -19,8 +19,8 @@
 // @exclude      http://www.dev/Show-Site-All-UserJS/ui.html
 // @require     https://raw.githubusercontent.com/jae-jae/l.js/master/userjs/l.userjs.min.js
 // @require     https://gist.githubusercontent.com/jae-jae/35a1833079d26e6c9d9c6d5bed982353/raw/userjs-base.js
-// @resource     ui     https://raw.githubusercontent.com/jae-jae/Show-Site-All-UserJS/master/dist/ui.html?_=1528823047018
-// @resource     uiJs   https://raw.githubusercontent.com/jae-jae/Show-Site-All-UserJS/master/dist/ui.js?_=1528823047018
+// @resource     ui     https://raw.githubusercontent.com/jae-jae/Show-Site-All-UserJS/master/dist/ui.html?_=1528823154833
+// @resource     uiJs   https://raw.githubusercontent.com/jae-jae/Show-Site-All-UserJS/master/dist/ui.js?_=1528823154833
 // @resource     count  https://greasyfork.org/scripts/by-site.json
 // @grant        GM_xmlhttpRequest
 // @grant        GM_getResourceText
