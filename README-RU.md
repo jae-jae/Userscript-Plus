@@ -16,7 +16,6 @@
 Зачастую, мы не знаем, что сайты имеют готовые скрипты для оптимизации страницы или сайта, но **Userscript+** поможет автоматически найти подходящие пользовательские скрипты, и по умолчанию, отсортирует их по рейтингу от высокого к низкому, что даёт тебе новый удобный способ использования `Tampermonkey`!
 
 > - [English description](https://github.com/jae-jae/Userscript-Plus/blob/master/README.md)
->
 > - [中文说明](https://github.com/jae-jae/Userscript-Plus/blob/master/README-ZH.md)
 
 ## Установка
