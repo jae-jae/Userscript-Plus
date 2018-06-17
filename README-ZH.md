@@ -1,6 +1,7 @@
 ![userscript+cn.gif](https://cdn.rawgit.com/jae-jae/_resources/master/img/userscript+cn.gif)
 # Userscript+
 
+[![Build Status](https://travis-ci.org/jae-jae/Userscript-Plus.svg?branch=master)](https://travis-ci.org/jae-jae/Userscript-Plus)
 [![Tampermonkey](https://img.shields.io/badge/Tampermonkey-up%20to%20date-green.svg)](https://tampermonkey.net/)
 [![webpack](https://img.shields.io/badge/webpack-3.x-orange.svg)](https://github.com/webpack/webpack)
 [![Vue](https://img.shields.io/badge/Vue-2.4%2B-yellow.svg)](https://vuejs.org/)
