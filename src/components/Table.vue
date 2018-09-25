@@ -65,6 +65,9 @@
                 <transition name="custom-classes-transition" enter-active-class="animated lightSpeedIn" leave-active-class="animated bounceOutRight">
                     <div v-show="showBody">
                         <Table highlight-row :columns="columns" :data="data"></Table>
+                        <div class="table-footer">
+                            <Support />
+                        </div>
                     </div>
                 </transition>
             </Card>
@@ -117,8 +120,9 @@
     import Tools from '../common/js/tools'
     import Info from './Info.vue'
     import Indicator from './Indicator.vue'
+    import Support from './Support.vue'
     export default {
-      components: { Info, Indicator },
+      components: { Info, Indicator, Support },
       mounted: function () {
             // let host =  location.host.split('.').splice(-2).join('.');
             /** let host = 'baidu.com'
@@ -319,5 +323,18 @@
     .ivu-table-body {
         height: 400px;
         overflow-x: hidden;
+    }
+
+    .table-footer {
+      position: fixed;
+      bottom: 0 ;
+      padding-left: 10px;
+      width: 100%;
+      height: 28px;
+      line-height: 28px;
+      background-color: #fff;
+    }
+    .table-footer a {
+      color: #ed3f14;
     }
 </style>
