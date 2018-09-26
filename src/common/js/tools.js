@@ -92,5 +92,13 @@ export default {
     }
     rt = rt.filter((a) => a.score !== 0).sort((a, b) => b.score - a.score).map((a) => a.item)
     return rt
+  },
+
+  isZH () {
+    let nlang = navigator.language.toLowerCase()
+    if (nlang === 'zh') {
+        nlang = 'zh-cn'
+    }
+    return nlang.search('zh-') === 0
   }
 }

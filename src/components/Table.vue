@@ -36,7 +36,13 @@
                         </Button>
                     </Tooltip>
 
-                    <Tooltip content="GreasyFork" placement="bottom">
+                    <Tooltip v-if="isZH" content="吾爱油猴" placement="bottom">
+                        <Button type="dashed" @click="open('https://52youhou.com/userscript/userjs-a3dmr?from=userscript-plus')">
+                            <Icon type="fork"></Icon>
+                        </Button>
+                    </Tooltip>
+
+                    <Tooltip v-if="!isZH" content="GreasyFork" placement="bottom">
                         <Button type="dashed" @click="open('https://greasyfork.org/zh-CN/scripts/24508')">
                             <Icon type="fork"></Icon>
                         </Button>
@@ -138,6 +144,7 @@
       },
       data: function () {
         return {
+          isZH: Tools.isZH(),
           showSearchInput: false,
           searchInput:  '',
           showTitle: false,
@@ -330,8 +337,6 @@
       bottom: 0 ;
       padding-left: 10px;
       width: 100%;
-      height: 28px;
-      line-height: 28px;
       background-color: #fff;
     }
     .table-footer a {

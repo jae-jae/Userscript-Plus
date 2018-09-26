@@ -33,7 +33,13 @@
                         </Button>
                     </Tooltip>
 
-                    <Tooltip content="GreasyFork" placement="bottom">
+                    <Tooltip v-if="isZH" content="吾爱油猴" placement="bottom">
+                        <Button type="dashed" @click="open('https://52youhou.com/userscript/userjs-a3dmr?from=userscript-plus')">
+                            <Icon type="fork"></Icon>
+                        </Button>
+                    </Tooltip>
+
+                    <Tooltip v-if="!isZH" content="GreasyFork" placement="bottom">
                         <Button type="dashed" @click="open('https://greasyfork.org/zh-CN/scripts/24508')">
                             <Icon type="fork"></Icon>
                         </Button>
@@ -56,6 +62,9 @@
                 <transition name="custom-classes-transition" enter-active-class="animated lightSpeedIn" leave-active-class="animated bounceOutRight">
                     <div>
                         <Table highlight-row :columns="columns" :data="data"></Table>
+                        <div class="table-footer">
+                            <Support />
+                        </div>
                     </div>
                 </transition>
             </Card>
@@ -102,8 +111,9 @@
 	/* global Event */
     import Tools from '../common/js/tools'
     import Info from './Info.vue'
+    import Support from './Support.vue'
     export default {
-      components: { Info },
+      components: { Info, Support },
       mounted: function () {
         this.$Spin.show()
         Tools.getData((json) => {
@@ -116,6 +126,7 @@
       },
       data: function () {
         return {
+          isZH: Tools.isZH(),
           showSearchInput: false,
           searchInput:  '',
           showBody: false,
@@ -274,7 +285,17 @@
     }
 
     .ivu-table-body {
-        height: 400px;
+        height: 418px;
         overflow-x: hidden;
+    }
+    .table-footer {
+      position: fixed;
+      bottom: 0 ;
+      padding-left: 10px;
+      width: 100%;
+      background-color: #fff;
+    }
+    .table-footer a {
+      color: #ed3f14;
     }
 </style>
