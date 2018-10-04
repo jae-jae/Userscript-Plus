@@ -7,7 +7,7 @@
 // @name:ru-RU   Userscript+ : Показать пользовательские скрипты (UserJS) для сайта. Jaeger
 // @name:ru   Userscript+ : Показать пользовательские скрипты (UserJS) для сайта. Jaeger
 // @namespace    https://github.com/jae-jae/Userscript-Plus
-// @version      2.3.2
+// @version      2.3.3
 // @description         Show current site all UserJS，The easier way to install UserJs for Tampermonkey.
 // @description:zh      显示当前网站的所有可用UserJS(Tampermonkey)脚本,交流QQ群:104267383
 // @description:zh-CN   显示当前网站的所有可用UserJS(Tampermonkey)脚本,交流QQ群:104267383
@@ -32,6 +32,7 @@
 // @connect     cdn.bootcss.com
 // @connect     raw.githubusercontent.com
 // @connect     gist.githubusercontent.com
+// @connect     cdnjs.cloudflare.com
 // @connect     greasyfork.org
 // @run-at      document-end
 // ==/UserScript==
