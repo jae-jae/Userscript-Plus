@@ -15,6 +15,9 @@
 </script>
 
 <style>
+    body {
+      width: 798px;
+    }
     #app {
         position: fixed;
         width: 100%;
