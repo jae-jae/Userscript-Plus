@@ -27,11 +27,15 @@ var renderOut = function(outFile,ljs){
 	});
 };
 
+var time = (+new Date());
+
 var ljs = `// @require     https://raw.githubusercontent.com/jae-jae/l.js/master/userjs/l.userjs.min.js
-// @require     https://gist.githubusercontent.com/jae-jae/35a1833079d26e6c9d9c6d5bed982353/raw/userjs-base.js`;
+// @require     https://gist.githubusercontent.com/jae-jae/35a1833079d26e6c9d9c6d5bed982353/raw/userjs-base.js
+// @resource     uiJs   https://raw.githubusercontent.com/jae-jae/Show-Site-All-UserJS/master/dist/ui.js?_=${time}`;
 
 var ljs_GF = `// @require      https://greasyfork.org/scripts/23419-l-js/code/ljs.js
-// @require      https://greasyfork.org/scripts/23420-userjs-base-js/code/userjs-basejs.js`;
+// @require      https://greasyfork.org/scripts/23420-userjs-base-js/code/userjs-basejs.js
+// @resource     uiJs   https://raw.githubusercontent.com/jae-jae/Show-Site-All-UserJS/master/dist/ui.gf.js?_=${time}`;
 
 
 renderOut('./dist/show-site-all-userjs.user.js',ljs);

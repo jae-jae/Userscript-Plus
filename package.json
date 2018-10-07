@@ -3,7 +3,7 @@
   "version": "2.0.0",
   "description": "Show current site all UserJS，The easier way to install UserJs for Tampermonkey.",
   "scripts": {
-    "build": "webpack && node build-userscript.js",
+    "build": "webpack --config=build/webpack.config.js && webpack --config=build/webpack.gf.config.js  && node build/userscript.js",
     "watch:ui": "webpack --watch",
     "standard": "standard --plugin html 'src/**/*.{js,vue}' --fix"
   },

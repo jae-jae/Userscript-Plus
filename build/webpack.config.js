@@ -6,7 +6,7 @@ module.exports = {
         ui:"./src/main.js"
     },
     output: {
-        path: __dirname + '/dist',
+        path: __dirname + '/../dist',
         filename: "[name].js"
     },
     module: {
