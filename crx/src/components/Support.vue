@@ -20,7 +20,8 @@ export default {
         }
     },
     mounted () {
-        window.fetch('https://api.jae.sh/userscript-plus')
+        let api = 'https://gist.githubusercontent.com/jae-jae/addb107b30b12b5d54d2f062bf46e80d/raw/support-userscript-plus.json'
+        window.fetch(api)
               .then((r) => {
                 return r.json()
               }).then((json) => {
