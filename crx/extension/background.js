@@ -41,9 +41,10 @@ function getCurrentTabUrl(callback) {
   }
 
   function getUrlHost(url) {
-    var a = document.createElement('a');
+    let a = document.createElement('a');
     a.href = url;
-    return a.hostname.split('.').splice(-2).join('.')
+    let mainHost = psl.get(a.hostname) || a.hostname.split('.').splice(-2).join('.')
+    return mainHost
   }
 
   function changeBadge(data) {

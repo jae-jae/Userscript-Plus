@@ -7,7 +7,7 @@
 // @name:ru-RU   Userscript+ : Показать пользовательские скрипты (UserJS) для сайта. Jaeger
 // @name:ru   Userscript+ : Показать пользовательские скрипты (UserJS) для сайта. Jaeger
 // @namespace    https://github.com/jae-jae/Userscript-Plus
-// @version      2.3.3
+// @version      2.3.4
 // @description         Show current site all UserJS，The easier way to install UserJs for Tampermonkey.
 // @description:zh      显示当前网站的所有可用UserJS(Tampermonkey)脚本,交流QQ群:104267383
 // @description:zh-CN   显示当前网站的所有可用UserJS(Tampermonkey)脚本,交流QQ群:104267383
@@ -21,8 +21,8 @@
 // @exclude      http://www.dev/Show-Site-All-UserJS/ui.html
 // @require      https://greasyfork.org/scripts/23419-l-js/code/ljs.js
 // @require      https://greasyfork.org/scripts/23420-userjs-base-js/code/userjs-basejs.js
-// @resource     uiJs   https://raw.githubusercontent.com/jae-jae/Show-Site-All-UserJS/master/dist/ui.gf.js?_=1552445570026
-// @resource     ui     https://raw.githubusercontent.com/jae-jae/Show-Site-All-UserJS/master/dist/ui.html?_=1552445570027
+// @resource     uiJs   https://raw.githubusercontent.com/jae-jae/Show-Site-All-UserJS/master/dist/ui.gf.js?_=1552460216059
+// @resource     ui     https://raw.githubusercontent.com/jae-jae/Show-Site-All-UserJS/master/dist/ui.html?_=1552460216060
 // @resource     count  https://greasyfork.org/scripts/by-site.json
 // @grant        GM_xmlhttpRequest
 // @grant        GM_getResourceText
@@ -52,7 +52,7 @@ var FetchUserjs = function () {
     function FetchUserjs() {
         _classCallCheck(this, FetchUserjs);
 
-        this.host = window.location.hostname.split('.').splice(-2).join('.');
+        this.host = this.getMainHost();
         this.showTime = 10;
         this.quietKey = 'jae_fetch_userjs_quiet';
         this.countKey = 'jae_fetch_userjs_count';
@@ -60,6 +60,12 @@ var FetchUserjs = function () {
     }
 
     _createClass(FetchUserjs, [{
+        key: 'getMainHost',
+        value: function getMainHost() {
+            var host = window.location.hostname;
+            return psl.get(host) || host.split('.').splice(-2).join('.');
+        }
+    }, {
         key: 'getCountData',
         value: function getCountData(host) {
             var countData = GM_getResourceText('count');
@@ -152,7 +158,7 @@ var FetchUserjs = function () {
     return FetchUserjs;
 }();
 
-ljs.exec(['jQuery', 'iframe'], function () {
+ljs.exec(['jQuery', 'iframe', 'psl'], function () {
     var fu = new FetchUserjs();
     fu.render();
 });

@@ -3,7 +3,7 @@
   
     "name": "Userscript+ for Tampermonkey",
     "description": "Show current site all UserJS，The easier way to install UserJs for Tampermonkey.",
-    "version": "1.4.1",
+    "version": "1.4.2",
     "author": "Jaeger <JaegerCode@gmail.com>",
     "homepage_url": "https://github.com/jae-jae/Userscript-Plus",
     "icons": {
@@ -24,7 +24,7 @@
     },
 
     "background": {
-      "scripts": ["background.js"],
+      "scripts": ["psl.min.js","background.js"],
       "persistent": false
     },
 

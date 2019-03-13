@@ -2,13 +2,15 @@
 
 import timeago from 'timeago.js'
 import fuzzy from 'fuzzy.js'
+import psl from 'psl'
 
 let config = {
   cacheKey: 'jae_fetch_userjs_cache',
   countKey: 'jae_fetch_userjs_count',
-  host: window.location.hostname.split('.').splice(-2).join('.'),
+  host: psl.get(window.location.hostname) || window.location.hostname.split('.').splice(-2).join('.'),
   api: 'https://greasyfork.org/en/scripts/by-site/{host}.json'
 }
+
 
 export default {
   timeagoFormat (time) {

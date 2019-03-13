@@ -59,7 +59,8 @@ export default {
       this.currentTab.then((tab) => {
         let a = document.createElement('a');
         a.href = tab.url;
-        resolve(a.hostname.split('.').splice(-2).join('.'))
+        let mainHost = psl.get(a.hostname) || a.hostname.split('.').splice(-2).join('.')
+        resolve(mainHost)
       })
       
     })
