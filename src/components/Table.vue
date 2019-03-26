@@ -146,7 +146,7 @@
         return {
           isZH: Tools.isZH(),
           showSearchInput: false,
-          searchInput:  '',
+          searchInput: '',
           showTitle: false,
           showBody: false,
           titleIcon: 'chevron-up',
@@ -270,7 +270,7 @@
         searchInput: function (val) {
           if (val) {
             val = val.toLowerCase()
-            this.data = Tools.searcher(this.originData,val)
+            this.data = Tools.searcher(this.originData, val)
           } else {
             this.data = this.originData
           }

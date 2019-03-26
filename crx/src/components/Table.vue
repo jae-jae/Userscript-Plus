@@ -108,7 +108,6 @@
 </template>
 
 <script>
-	/* global Event */
     import Tools from '../common/js/tools'
     import Info from './Info.vue'
     import Support from './Support.vue'
@@ -128,7 +127,7 @@
         return {
           isZH: Tools.isZH(),
           showSearchInput: false,
-          searchInput:  '',
+          searchInput: '',
           showBody: false,
           titleIcon: 'chevron-up',
           count: 0,
@@ -251,7 +250,7 @@
             //     return str.toLowerCase().indexOf(val) > -1
             //   })
             // })
-            this.data = Tools.searcher(this.originData,val)
+            this.data = Tools.searcher(this.originData, val)
             // console.log(this.data)
           } else {
             this.data = this.originData

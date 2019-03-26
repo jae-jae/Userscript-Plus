@@ -11,7 +11,6 @@ let config = {
   api: 'https://greasyfork.org/en/scripts/by-site/{host}.json'
 }
 
-
 export default {
   timeagoFormat (time) {
     let lang = (navigator.language === 'zh-CN') ? 'zh_CN' : 'en_short'
@@ -69,17 +68,17 @@ export default {
     return count >= 50 ? 50 : count
   },
 
-  searcher (data,query) {
+  searcher (data, query) {
     let rt = []
-    for(let i =0 ; i < data.length; i++) {
+    for (let i = 0; i < data.length; i++) {
       let item = data[i]
       let max = null
       let frt = null
-      for(let key of ['name','description','user']) {
+      for (let key of ['name', 'description', 'user']) {
         if (key === 'user') {
-          frt = fuzzy(item['user']['name'],query)
+          frt = fuzzy(item['user']['name'], query)
         } else {
-          frt = fuzzy(item[key],query)
+          frt = fuzzy(item[key], query)
         }
         if (max === null) {
           max = frt
@@ -99,7 +98,7 @@ export default {
   isZH () {
     let nlang = navigator.language.toLowerCase()
     if (nlang === 'zh') {
-        nlang = 'zh-cn'
+      nlang = 'zh-cn'
     }
     return nlang.search('zh-') === 0
   }

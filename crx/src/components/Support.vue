@@ -13,32 +13,32 @@
 <script>
 import Tools from '../common/js/tools'
 export default {
-    data () {
-        return {
-            curIndex: 0,
-            goods: []
-        }
-    },
-    mounted () {
-        let api = 'https://gist.githubusercontent.com/jae-jae/addb107b30b12b5d54d2f062bf46e80d/raw/support-userscript-plus.json'
-        window.fetch(api)
+  data () {
+    return {
+      curIndex: 0,
+      goods: []
+    }
+  },
+  mounted () {
+    let api = 'https://gist.githubusercontent.com/jae-jae/addb107b30b12b5d54d2f062bf46e80d/raw/support-userscript-plus.json'
+    window.fetch(api)
               .then((r) => {
                 return r.json()
               }).then((json) => {
-                  this.goods = json
-                  this.curIndex = this.random(0,json.length - 1)
+                this.goods = json
+                this.curIndex = this.random(0, json.length - 1)
               })
-    },
-    computed: {
-        showSupportBox () {
-            return this.goods.length > 0 && Tools.isZH()
-        }
-    },
-    methods: {
-        random (min, max) {
-            return (Math.random() * (max - min + 1) | 0) + min
-        }
+  },
+  computed: {
+    showSupportBox () {
+      return this.goods.length > 0 && Tools.isZH()
     }
+  },
+  methods: {
+    random (min, max) {
+      return (Math.random() * (max - min + 1) | 0) + min
+    }
+  }
 }
 </script>
 

@@ -1,4 +1,4 @@
-/* global parent, Event, sessionStorage */
+/* global chrome, psl, fetch */
 
 import timeago from 'timeago.js'
 import fuzzy from 'fuzzy.js'
@@ -20,7 +20,7 @@ export default {
     link.href = '${uri}';
     link.dispatchEvent(evt);
     `
-    chrome.tabs.executeScript(null,{code: jsStr})
+    chrome.tabs.executeScript(null, {code: jsStr})
   },
   /* Nano Templates - https://github.com/trix/nano */
   nano (template, data) {
@@ -32,37 +32,36 @@ export default {
     })
   },
 
-  get currentTab() {
-    return new Promise(function(resolve, reject){
+  get currentTab () {
+    return new Promise(function (resolve, reject) {
       let queryInfo = {
         active: true,
         currentWindow: true
       }
-      
+
       chrome.tabs.query(queryInfo, (tabs) => {
         let tab = tabs[0]
         resolve(tab)
-      });
+      })
     })
   },
 
   get sessionStorage () {
-    return new Promise(function(resolve, reject){
+    return new Promise(function (resolve, reject) {
       chrome.runtime.getBackgroundPage(function (bg) {
         resolve(bg.sessionStorage)
       })
     })
   },
 
-  get host() {
+  get host () {
     return new Promise((resolve, reject) => {
       this.currentTab.then((tab) => {
-        let a = document.createElement('a');
-        a.href = tab.url;
+        let a = document.createElement('a')
+        a.href = tab.url
         let mainHost = psl.get(a.hostname) || a.hostname.split('.').splice(-2).join('.')
         resolve(mainHost)
       })
-      
     })
   },
 
@@ -86,23 +85,21 @@ export default {
               })
             })
         }
-
       })
     })
-   
   },
 
-  searcher (data,query) {
+  searcher (data, query) {
     let rt = []
-    for(let i =0 ; i < data.length; i++) {
+    for (let i = 0; i < data.length; i++) {
       let item = data[i]
       let max = null
       let frt = null
-      for(let key of ['name','description','user']) {
+      for (let key of ['name', 'description', 'user']) {
         if (key === 'user') {
-          frt = fuzzy(item['user']['name'],query)
+          frt = fuzzy(item['user']['name'], query)
         } else {
-          frt = fuzzy(item[key],query)
+          frt = fuzzy(item[key], query)
         }
         if (max === null) {
           max = frt
@@ -122,7 +119,7 @@ export default {
   isZH () {
     let nlang = navigator.language.toLowerCase()
     if (nlang === 'zh') {
-        nlang = 'zh-cn'
+      nlang = 'zh-cn'
     }
     return nlang.search('zh-') === 0
   }

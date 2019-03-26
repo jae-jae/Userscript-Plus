@@ -9557,7 +9557,7 @@ exports.default = {
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _tools = __webpack_require__(15);
@@ -9567,32 +9567,32 @@ var _tools2 = _interopRequireDefault(_tools);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
-    data: function data() {
-        return {
-            curIndex: 0,
-            goods: []
-        };
-    },
-    mounted: function mounted() {
-        var _this = this;
+  data: function data() {
+    return {
+      curIndex: 0,
+      goods: []
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
 
-        var api = 'https://gist.githubusercontent.com/jae-jae/addb107b30b12b5d54d2f062bf46e80d/raw/support-userscript-plus.json';
-        _tools2.default.getJSON(api, function (json) {
-            _this.goods = json;
-            _this.curIndex = _this.random(0, json.length - 1);
-        });
-    },
+    var api = 'https://gist.githubusercontent.com/jae-jae/addb107b30b12b5d54d2f062bf46e80d/raw/support-userscript-plus.json';
+    _tools2.default.getJSON(api, function (json) {
+      _this.goods = json;
+      _this.curIndex = _this.random(0, json.length - 1);
+    });
+  },
 
-    computed: {
-        showSupportBox: function showSupportBox() {
-            return this.goods.length > 0 && _tools2.default.isZH();
-        }
-    },
-    methods: {
-        random: function random(min, max) {
-            return (Math.random() * (max - min + 1) | 0) + min;
-        }
+  computed: {
+    showSupportBox: function showSupportBox() {
+      return this.goods.length > 0 && _tools2.default.isZH();
     }
+  },
+  methods: {
+    random: function random(min, max) {
+      return (Math.random() * (max - min + 1) | 0) + min;
+    }
+  }
 }; //
 //
 //
