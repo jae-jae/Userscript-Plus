@@ -20,14 +20,8 @@ export default {
     }
   },
   mounted () {
-    let api = 'https://gist.githubusercontent.com/jae-jae/addb107b30b12b5d54d2f062bf46e80d/raw/support-userscript-plus.json'
-    window.fetch(api)
-              .then((r) => {
-                return r.json()
-              }).then((json) => {
-                this.goods = json
-                this.curIndex = this.random(0, json.length - 1)
-              })
+    this.getData()
+    this.hide()
   },
   computed: {
     showSupportBox () {
@@ -35,8 +29,23 @@ export default {
     }
   },
   methods: {
+    getData ()  {
+       let api = 'https://gist.githubusercontent.com/jae-jae/addb107b30b12b5d54d2f062bf46e80d/raw/support-userscript-plus.json'
+      window.fetch(api)
+                .then((r) => {
+                  return r.json()
+                }).then((json) => {
+                  this.goods = json
+                  this.curIndex = this.random(0, json.length - 1)
+                })
+    },
     random (min, max) {
       return (Math.random() * (max - min + 1) | 0) + min
+    },
+    hide () {
+      setTimeout(() => {
+        this.goods = []
+      },10000)
     }
   }
 }
