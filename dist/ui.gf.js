@@ -9574,13 +9574,8 @@ exports.default = {
     };
   },
   mounted: function mounted() {
-    var _this = this;
-
-    var api = 'https://gist.githubusercontent.com/jae-jae/addb107b30b12b5d54d2f062bf46e80d/raw/support-userscript-plus.json';
-    _tools2.default.getJSON(api, function (json) {
-      _this.goods = json;
-      _this.curIndex = _this.random(0, json.length - 1);
-    });
+    this.getData();
+    this.hide();
   },
 
   computed: {
@@ -9589,8 +9584,24 @@ exports.default = {
     }
   },
   methods: {
+    getData: function getData() {
+      var _this = this;
+
+      var api = 'https://gist.githubusercontent.com/jae-jae/addb107b30b12b5d54d2f062bf46e80d/raw/support-userscript-plus.json';
+      _tools2.default.getJSON(api, function (json) {
+        _this.goods = json;
+        _this.curIndex = _this.random(0, json.length - 1);
+      });
+    },
     random: function random(min, max) {
       return (Math.random() * (max - min + 1) | 0) + min;
+    },
+    hide: function hide() {
+      var _this2 = this;
+
+      setTimeout(function () {
+        _this2.goods = [];
+      }, 10000);
     }
   }
 }; //
