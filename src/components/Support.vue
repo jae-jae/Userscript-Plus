@@ -42,7 +42,7 @@ export default {
     hide () {
       setTimeout(() => {
         this.goods = []
-      },10000)
+      }, 10000)
     }
   }
 }

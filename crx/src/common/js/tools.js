@@ -80,6 +80,10 @@ export default {
           fetch(api)
             .then((r) => {
               r.json().then((json) => {
+                json = json.map((item) => {
+                  item.user = item.users[0]
+                  return item
+                })
                 bgSessionStorage.setItem(host, JSON.stringify(json))
                 callback(json)
               })

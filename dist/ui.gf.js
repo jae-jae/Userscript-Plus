@@ -9431,6 +9431,10 @@ exports.default = {
         host: config.host
       });
       this.getJSON(api, function (json) {
+        json = json.map(function (item) {
+          item.user = item.users[0];
+          return item;
+        });
         sessionStorage.setItem(config.cacheKey, JSON.stringify(json));
         callback(json);
       });

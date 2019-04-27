@@ -29,8 +29,8 @@ export default {
     }
   },
   methods: {
-    getData ()  {
-       let api = 'https://gist.githubusercontent.com/jae-jae/addb107b30b12b5d54d2f062bf46e80d/raw/support-userscript-plus.json'
+    getData () {
+      let api = 'https://gist.githubusercontent.com/jae-jae/addb107b30b12b5d54d2f062bf46e80d/raw/support-userscript-plus.json'
       window.fetch(api)
                 .then((r) => {
                   return r.json()
@@ -45,7 +45,7 @@ export default {
     hide () {
       setTimeout(() => {
         this.goods = []
-      },10000)
+      }, 10000)
     }
   }
 }

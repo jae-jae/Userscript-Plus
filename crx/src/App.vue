@@ -16,7 +16,9 @@
 
 <style>
     body {
-      width: 798px;
+        width: 860px;
+        height: 492px;
+        overflow-x: hidden;
     }
     #app {
         position: fixed;
