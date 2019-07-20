@@ -20,8 +20,8 @@
 // @include        *
 // @require      https://greasyfork.org/scripts/23419-l-js/code/ljs.js
 // @require      https://greasyfork.org/scripts/23420-userjs-base-js/code/userjs-basejs.js
-// @resource     uiJs   https://raw.githubusercontent.com/jae-jae/Show-Site-All-UserJS/master/dist/ui.gf.js?_=1563040627063
-// @resource     ui     https://raw.githubusercontent.com/jae-jae/Show-Site-All-UserJS/master/dist/ui.html?_=1563040627064
+// @resource     uiJs   https://raw.githubusercontent.com/jae-jae/Show-Site-All-UserJS/master/dist/ui.gf.js?_=1563626119181
+// @resource     ui     https://raw.githubusercontent.com/jae-jae/Show-Site-All-UserJS/master/dist/ui.html?_=1563626119183
 // @resource     count  https://greasyfork.org/scripts/by-site.json
 // @grant        GM_xmlhttpRequest
 // @grant        GM_getResourceText
