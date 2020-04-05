@@ -28,7 +28,7 @@
                     </Tooltip>
 
                     <Tooltip content="Chrome" placement="bottom">
-                        <Button type="dashed" @click="open('https://chrome.google.com/webstore/detail/okiocdganiomklllkfkmhneoibegifch')">
+                        <Button type="dashed" @click="open('https://github.com/jae-jae/Userscript-Plus/tree/master/crx')">
                              <Icon type="social-chrome"></Icon>
                         </Button>
                     </Tooltip>

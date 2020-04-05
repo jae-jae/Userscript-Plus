@@ -12156,7 +12156,7 @@ var render = function() {
                                   on: {
                                     click: function($event) {
                                       _vm.open(
-                                        "https://chrome.google.com/webstore/detail/okiocdganiomklllkfkmhneoibegifch"
+                                        "https://github.com/jae-jae/Userscript-Plus/tree/master/crx"
                                       )
                                     }
                                   }
