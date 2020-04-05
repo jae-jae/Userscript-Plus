@@ -9159,12 +9159,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 /* global Event */
 exports.default = {
@@ -12177,36 +12171,6 @@ var render = function() {
                             ],
                             1
                           ),
-                          _vm._v(" "),
-                          _vm.isZH
-                            ? _c(
-                                "Tooltip",
-                                {
-                                  attrs: {
-                                    content: "吾爱油猴",
-                                    placement: "bottom"
-                                  }
-                                },
-                                [
-                                  _c(
-                                    "Button",
-                                    {
-                                      attrs: { type: "dashed" },
-                                      on: {
-                                        click: function($event) {
-                                          _vm.open(
-                                            "https://52youhou.com/userscript/userjs-a3dmr?from=userscript-plus"
-                                          )
-                                        }
-                                      }
-                                    },
-                                    [_c("Icon", { attrs: { type: "fork" } })],
-                                    1
-                                  )
-                                ],
-                                1
-                              )
-                            : _vm._e(),
                           _vm._v(" "),
                           !_vm.isZH
                             ? _c(
