@@ -1,0 +1,25 @@
+export default {
+  table: {
+    tips: 'Trovati {count} user scripts per questa pagina',
+    install: 'Installa',
+    title: 'Titolo',
+    author: 'Autore',
+    authorTips: 'Clicca per accedere alla home page di {name}',
+    dailyInstalls: 'Giornalieri',
+    updatedTime: 'Aggiornamento',
+    action: 'Azione',
+    version: 'Versione',
+    score: 'Punteggio',
+    totalInstalls: 'Installazioni totali',
+    description: 'Descrizione',
+    donate: 'Donazione',
+    wechat: 'Wechat',
+    alipay: 'Alipay',
+    paypal: 'PayPal',
+    closeDonate: 'Chiudi Donazione',
+    feedback: 'Feedback',
+    close: 'Non mostrare più',
+    scriptInstalling: 'Installazione script...',
+    search: 'Cerca'
+  }
+}
