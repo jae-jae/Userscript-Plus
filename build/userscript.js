@@ -30,11 +30,11 @@ var renderOut = function(outFile,ljs){
 var time = (+new Date());
 
 var ljs = `// @require     https://cdn.jsdelivr.net/gh/jae-jae/l.js/userjs/l.userjs.min.js
-// @require     https://greasyfork.org/scripts/429994-l-lib-js/code/l-libjs.js
+// @require     https://cdn.jsdelivr.net/gh/jae-jae/l.js@master/lib.js
 // @resource     uiJs   https://cdn.jsdelivr.net/gh/jae-jae/Userscript-Plus/dist/ui.js?_=${time}`;
 
 var ljs_GF = `// @require      https://greasyfork.org/scripts/23419-l-js/code/ljs.js
-// @require      https://greasyfork.org/scripts/429994-l-lib-js/code/l-libjs.js
+// @require      https://cdn.jsdelivr.net/gh/jae-jae/l.js@master/lib.js
 // @resource     uiJs   https://cdn.jsdelivr.net/gh/jae-jae/Userscript-Plus/dist/ui.gf.js?_=${time}`;
 
 
